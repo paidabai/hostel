@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 // 引入路由组件(不能忽略.vue后缀)
-import hostelList from '../pages/HostelList/index.vue'
+import hostelList from '../views/HostelList/index.vue'
 
 Vue.use(VueRouter)
 

@@ -2,13 +2,13 @@
   <div class="header">
     <div class="header-logo">
       <router-link to="">
-        <img src="../../assets/navLogo/logo.png" alt="">
+        <img src="../../assets/logo/logo.png" alt="">
       </router-link>
     </div>
     <div class="header-right">
       <div class="header-use">
         <router-link to="">订单管理</router-link>
-        <router-link to=""><img src="../../assets/navLogo/user-icon.png" alt=""> 注册</router-link>
+        <router-link to=""><img src="../../assets/logo/user-icon.png" alt=""> 注册</router-link>
         <router-link to="">登录</router-link>
       </div>
       <div class="header-nav">
@@ -43,7 +43,7 @@ export default {
         }
       })
     }
-  }
+  },
 }
 </script>
 
