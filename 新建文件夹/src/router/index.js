@@ -18,14 +18,9 @@ const router = new VueRouter({
     {
       path: '/hostelList',
       name: 'hostelList',
-      component: hostelList,
-    },
-    {
-      path: '/cooperation',
-      name: 'cooperation',
-      component: () => import('../pages/Cooperation/index.vue'),
-    },
-  ],
+      component: hostelList
+    }
+  ]
 })
 
 export default router
