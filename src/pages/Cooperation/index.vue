@@ -44,9 +44,15 @@
         </div>
         <div class="aside">
           <ul>
-            <li><b></b> <a href="">旅社预定</a></li>
-            <li>会员卡</li>
-            <li>旅社加盟</li>
+            <li>
+              <el-button style="width: 150px; height: 60px" type="success"
+                ><i class="el-icon-house"></i>旅舍预定<i
+                  class="el-icon-arrow-right el-icon--right"
+                ></i
+              ></el-button>
+            </li>
+            <li></li>
+            <li></li>
           </ul>
         </div>
       </div>
@@ -135,7 +141,7 @@ export default {}
         }
       }
     }
-    > .aside {
+    /*  > .aside {
       > ul {
         > li {
           a {
@@ -155,7 +161,7 @@ export default {}
           }
         }
       }
-    }
+    } */
   }
 }
 </style>
