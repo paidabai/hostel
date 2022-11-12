@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 // 引入路由组件(不能忽略.vue后缀)
 import hostelList from '../views/HostelList/index.vue'
+import ContactHeadquarters from '../views/ContactHeadquarters/index.vue'
 
 Vue.use(VueRouter)
 
@@ -19,6 +20,11 @@ const router = new VueRouter({
       path: '/hostelList',
       name: 'hostelList',
       component: hostelList
+    },
+    {
+      path: '/ContactHeadquarters',
+      name: 'ContactHeadquarters',
+      component: ContactHeadquarters
     }
   ]
 })
