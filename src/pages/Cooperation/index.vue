@@ -37,24 +37,75 @@
                 </div>
               </div>
             </li>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>
-        </div>
-        <div class="aside">
-          <ul>
             <li>
-              <el-button style="width: 150px; height: 60px" type="success"
-                ><i class="el-icon-house"></i>旅舍预定<i
-                  class="el-icon-arrow-right el-icon--right"
-                ></i
-              ></el-button>
+              <div>
+                <img
+                  src="../../assets/img/cooperation/exhibition-l-iten4.jpg"
+                  alt=""
+                />
+                <div>
+                  <h5>加盟优势</h5>
+                  <ul>
+                    <li>
+                      <a href=""><span>|</span>青年旅社组织</a>
+                    </li>
+                    <li>
+                      <a href=""><span>|</span>青年旅社组织</a>
+                    </li>
+                    <li>
+                      <a href=""><span>|</span>青年旅社组织</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </li>
-            <li></li>
-            <li></li>
+            <li>
+              <div>
+                <img
+                  src="../../assets/img/cooperation/exhibition-l-iten4.jpg"
+                  alt=""
+                />
+                <div>
+                  <h5>加盟优势</h5>
+                  <ul>
+                    <li>
+                      <a href=""><span>|</span>青年旅社组织</a>
+                    </li>
+                    <li>
+                      <a href=""><span>|</span>青年旅社组织</a>
+                    </li>
+                    <li>
+                      <a href=""><span>|</span>青年旅社组织</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div>
+                <img
+                  src="../../assets/img/cooperation/exhibition-l-iten4.jpg"
+                  alt=""
+                />
+                <div>
+                  <h5>加盟优势</h5>
+                  <ul>
+                    <li>
+                      <a href=""><span>|</span>青年旅社组织</a>
+                    </li>
+                    <li>
+                      <a href=""><span>|</span>青年旅社组织</a>
+                    </li>
+                    <li>
+                      <a href=""><span>|</span>青年旅社组织</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
           </ul>
         </div>
+        <HostelCard />
       </div>
     </div>
   </div>
@@ -67,6 +118,11 @@ export default {}
 <style lang="less" scoped>
 .bgImg {
   width: 100%;
+  margin: 0 auto;
+  > img {
+    display: block;
+    width: 100%;
+  }
 }
 .main {
   width: 1080px;
@@ -84,22 +140,26 @@ export default {}
     }
   }
   > .content {
-    width: 810px;
-    height: 840px;
+    width: 100%;
+
     display: flex;
     justify-content: space-between;
+    padding-bottom: 80px;
     > .module {
       > ul {
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+        padding-right: 26px;
         > li {
           width: 395px;
           height: 400px;
+          margin-bottom: 20px;
           > div {
             width: 100%;
             position: relative;
             overflow: hidden;
+            border-radius: 8px;
             &:hover {
               > div {
                 bottom: 0;
