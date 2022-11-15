@@ -11,32 +11,39 @@
         <div>
           <p>你可以通过以下方式联系我们</p>
           <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
-            <el-menu-item index="1"><a href="#1" v-scroll-to="" >关于预订</a></el-menu-item>
-            <el-menu-item index="2"><a href="#2" v-scroll-to="'#2'" >关于会员卡</a></el-menu-item>
-            <el-menu-item index="3"><a href="#3" v-scroll-to="'#3'" >关于加盟</a></el-menu-item>
-            <el-menu-item index="4"><a href="#4" v-scroll-to="'#4'" >关于合作</a></el-menu-item>
-            <el-menu-item index="5"><a v-scroll-to="'#other'" >其他问题</a></el-menu-item>
+            <el-menu-item v-ripple="'rgba(255, 255, 255, 0.5)'" v-for="item in menuItem" :index="item.id + ''" :key="item.id">
+              <a v-scroll-to="item.scrollTo">
+                {{item.title}}
+              </a>
+            </el-menu-item>
           </el-menu>
-          <div class="headquarters-list" id="1">
+          <el-menu :default-active="activeIndex" :class="menuType" mode="horizontal"  style="display: none">
+            <el-menu-item v-ripple="'rgba(255, 255, 255, 0.5)'" v-for="item in menuItem" :index="item.id + ''" :key="item.id">
+              <a v-scroll-to="item.scrollTo">
+                {{item.title}}
+              </a>
+            </el-menu-item>
+          </el-menu>
+          <div class="headquarters-list" id="book">
             <h3>关于预订</h3>
             <p>联系电话： 020-87513731转 103分机（普通话，粤语，English）</p>
             <p>电子邮箱： service@yhachina.com</p>
             <p>传真号码： 020-38108668</p>
             <p class="tips">温馨提示：如需取消订单，请直接登录您的个人账户，通过网站的 " 旅舍订单 " 进行查询及操作。</p>
           </div>
-          <div class="headquarters-list" id="2">
+          <div class="headquarters-list" id="card">
           <h3>关于会员卡</h3>
           <p>联系电话： 020-87513731转 103分机（普通话，粤语，English）</p>
           <p>电子邮箱： service@yhachina.com</p>
           <p>传真号码： 020-38108668</p>
         </div>
-          <div class="headquarters-list" id="3">
+          <div class="headquarters-list" id="join">
             <h3>关于加盟</h3>
             <p>联系电话： 020-87513731转 103分机（普通话，粤语，English）</p>
             <p>电子邮箱： service@yhachina.com</p>
             <p class="tips">温馨提示：在与我们联系之前,请仔细阅读本站”旅舍加盟”栏目的信息,相信能解决您的大多数疑问。</p>
           </div>
-          <div class="headquarters-list" id="4">
+          <div class="headquarters-list" id="interact">
             <h3>关于合作</h3>
             <h4>市场合作、会员优惠、会员卡代理商加盟、校园推广、活动赞助等，欢迎与我能联系。</h4>
             <p>联系电话： 020-87513731转 103分机（普通话，粤语，English）</p>
@@ -73,15 +80,45 @@ export default {
     return{
       //此处不声明 map 对象，可以直接使用 this.map赋值或者采用非响应式的普通对象来存储。
       // map:null,
+      // 激活项
       activeIndex: '1',
+      // 需要遍历的导航信息
+      menuItem: [
+        {
+          id: 1, title: '关于预订', scrollTo: '#book'
+        },
+        {
+          id: 2, title: '关于会员卡', scrollTo: '#card'
+        },
+        {
+          id: 3, title: '关于加盟', scrollTo: '#join'
+        },
+        {
+          id: 4, title: '关于合作', scrollTo: '#interact'
+        },
+        {
+          id: 5, title: '其他问题', scrollTo: '#other'
+        },
+      ],
+      // el-menu的样式
+      menuType: 'el-menu-demo'
     }
   },
+  // 将要挂载时
   mounted(){
     //DOM初始化完成进行地图初始化
     this.initMap();
+    // 监听
+    window.addEventListener("scroll", this.scrollActive);
+  },
+  // 组件将要销毁时
+  beforeDestroy() {
+    // 销毁监听
+    window.removeEventListener("scroll", this.scrollActive);
   },
   methods:{
-    initMap(){
+    // 地图初始化方法
+    initMap() {
       AMapLoader.load({
         key: GAODE_KEY,             // 申请好的Web端开发者Key，首次调用 load 时必填
         version:"2.0",      // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15
@@ -109,7 +146,21 @@ export default {
         console.log(e);
       })
     },
-
+    scrollActive() {
+      // 获取滚动的距离
+      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+      // 获取第一个’关于预定‘, 距离顶部的值
+      const firstDom = document.getElementById('book').offsetTop
+      // 如果滚动的距离超过第一个’关于预定‘, 计算滚动到的元素并修改高亮的值（activeIndex）
+      if (scrollTop > firstDom) {
+        this.activeIndex = parseInt((scrollTop - firstDom - 170) / 210 + '') + ''
+        if (scrollTop > (firstDom + 400)) {
+          this.menuType = 'el-menu-demo fixed'
+        } else {
+          this.menuType = 'el-menu-demo'
+        }
+      }
+    }
   },
 }
 </script>
@@ -149,6 +200,7 @@ export default {
         }
       }
       .hostel-info {
+        padding-bottom: 250px;
         display: flex;
         justify-content: space-between;
         font-size: 16px;
@@ -189,6 +241,12 @@ export default {
             }
           }
         }
+        .fixed {
+          display: block !important;
+          position: fixed;
+          top: 0;
+        }
+
         .headquarters-list {
           background-color: #fff;
           padding: 20px 15px;

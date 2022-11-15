@@ -7,6 +7,8 @@
       <div class="table">
         <h2 class="table-title">旅舍一览表</h2>
         <el-table
+            v-loading="loading"
+            class="box"
             border
             :data="tableData"
             stripe
@@ -34,8 +36,16 @@
           <el-table-column
               label="操作"
               width="75">
-            <template>
-              <el-button type="text" size="small">查看</el-button>
+            <template slot-scope="scope">
+              <el-button type="text" size="small">
+                <router-link :to="{
+                    name: 'hostelDetail',
+                    params: {
+                      hostelId: scope.row.hostelId
+                    }
+                  }
+                " >查看</router-link>
+              </el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -43,6 +53,7 @@
       <HostelCard class="card"/>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -56,7 +67,8 @@ export default {
   },
   data() {
     return {
-      tableData: []
+      tableData: [],
+      loading: false
     }
   },
   // 将要挂载时
@@ -65,15 +77,20 @@ export default {
   },
 
   methods: {
+    handleClick(row) {
+      console.log(row);
+    },
     // 获取全部的旅舍
    getHostelList(){
+     this.loading = true
       reqHostelList().then((value) => {
         const result = value.data
         if (result.status === 200) {
           this.tableData = result.data
+          this.loading = false
         }
       })
-    }
+    },
   },
 }
 </script>

@@ -2,13 +2,16 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 // 引入路由组件(不能忽略.vue后缀)
-import hostelList from '../views/HostelList/index.vue'
+import HostelList from '../views/HostelList/index.vue'
 import ContactHeadquarters from '../views/ContactHeadquarters/index.vue'
 import hostelPublicGoodList from "../views/HostelPublicGood/index.vue"
 import hostelMenberCard from "../views/HostelMenberCard/index.vue"
+import HostelDetail from "../views/HostelDetail/index.vue";
+
 Vue.use(VueRouter)
 
 const router = new VueRouter({
+  // 路由使用history 模式
   mode: 'history',
   base: import.meta.env.BASE_URL,
   routes: [
@@ -17,14 +20,16 @@ const router = new VueRouter({
     //   name: 'home',
     //   component: HomeView
     // },
+    // 旅舍列表
     {
       path: '/hostelList',
       name: 'hostelList',
-      component: hostelList
+      component: HostelList
     },
+    // 联系总部
     {
-      path: '/ContactHeadquarters',
-      name: 'ContactHeadquarters',
+      path: '/contactHeadquarters',
+      name: 'contactHeadquarters',
       component: ContactHeadquarters
     },
     //宿舍公益
@@ -39,6 +44,17 @@ const router = new VueRouter({
       name: 'hostelMenberCard ',
       component: hostelMenberCard 
     },
+    // 旅舍详情
+    {
+      path: '/hostelDetail/:hostelId',
+      name: 'hostelDetail',
+      component: HostelDetail,
+      props({params:{hostelId}}){
+        return {
+          hostelId
+        }
+      }
+    }
   ]
 })
 

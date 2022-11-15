@@ -5,6 +5,7 @@ import legacy from '@vitejs/plugin-legacy'
 import vue2 from '@vitejs/plugin-vue2'
 import Components from 'unplugin-vue-components/vite'
 import { ElementUiResolver } from 'unplugin-vue-components/resolvers'
+import AutoImport from 'unplugin-auto-import/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -18,7 +19,12 @@ export default defineConfig({
       resolvers: [
         ElementUiResolver(),
       ],
-    })
+    }),
+    AutoImport({
+      resolvers: [
+        ElementUiResolver(),
+      ],
+    }),
   ],
   resolve: {
     alias: {
