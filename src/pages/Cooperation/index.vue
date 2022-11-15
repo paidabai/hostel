@@ -1,118 +1,83 @@
 <template>
   <div class="Hotel-Franchise">
-    <div class="bgImg">
-      <img src="../../assets/img/cooperation/exhibition-banner3.jpg" alt="" />
-    </div>
-    <!-- 主体内容 -->
-
-    <div class="main">
-      <div class="title">
-        <h4>旅社加盟</h4>
-        <p>
-          加盟YHA®青年旅舍®，成为YHA®的一员，帮助年轻人实现”读万卷书，行万里路”的梦想。
-        </p>
+    <div class="aaaa">
+      <div class="bgImg">
+        <img src="../../assets/img/cooperation/exhibition-banner3.jpg" alt="" />
       </div>
-      <div class="content">
-        <div class="module">
-          <ul>
-            <li>
-              <div>
-                <img
-                  src="../../assets/img/cooperation/exhibition-l-iten4.jpg"
-                  alt=""
-                />
-                <div>
-                  <h5>加盟优势</h5>
-                  <ul>
-                    <li>
-                      <a href=""><span>|</span>青年旅社组织</a>
-                    </li>
-                    <li>
-                      <a href=""><span>|</span>青年旅社组织</a>
-                    </li>
-                    <li>
-                      <a href=""><span>|</span>青年旅社组织</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div>
-                <img
-                  src="../../assets/img/cooperation/exhibition-l-iten4.jpg"
-                  alt=""
-                />
-                <div>
-                  <h5>加盟优势</h5>
-                  <ul>
-                    <li>
-                      <a href=""><span>|</span>青年旅社组织</a>
-                    </li>
-                    <li>
-                      <a href=""><span>|</span>青年旅社组织</a>
-                    </li>
-                    <li>
-                      <a href=""><span>|</span>青年旅社组织</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div>
-                <img
-                  src="../../assets/img/cooperation/exhibition-l-iten4.jpg"
-                  alt=""
-                />
-                <div>
-                  <h5>加盟优势</h5>
-                  <ul>
-                    <li>
-                      <a href=""><span>|</span>青年旅社组织</a>
-                    </li>
-                    <li>
-                      <a href=""><span>|</span>青年旅社组织</a>
-                    </li>
-                    <li>
-                      <a href=""><span>|</span>青年旅社组织</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div>
-                <img
-                  src="../../assets/img/cooperation/exhibition-l-iten4.jpg"
-                  alt=""
-                />
-                <div>
-                  <h5>加盟优势</h5>
-                  <ul>
-                    <li>
-                      <a href=""><span>|</span>青年旅社组织</a>
-                    </li>
-                    <li>
-                      <a href=""><span>|</span>青年旅社组织</a>
-                    </li>
-                    <li>
-                      <a href=""><span>|</span>青年旅社组织</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-          </ul>
+      <!-- 主体内容 -->
+
+      <div class="main">
+        <div class="title">
+          <h4>旅社加盟</h4>
+          <p>
+            加盟YHA®青年旅舍®，成为YHA®的一员，帮助年轻人实现”读万卷书，行万里路”的梦想。
+          </p>
         </div>
-        <HostelCard />
+        <div class="content">
+          <div class="module">
+            <ul>
+              <li v-for="catlist in tableData" :key="catlist.cid">
+                <div>
+                  <img :src="`${BASE_URL}/cooperation/${catlist.pic}`" alt="" />
+                  <div :style="`background-color: ${catlist.bgcolor};`">
+                    <h5>{{ catlist.cname }}</h5>
+                    <ul>
+                      <!--  <li>
+                        <a href=""><span>|</span>青年旅社组织</a>
+                      </li> -->
+                      <li>
+                        <a href=""><span>|</span>青年旅社组织</a>
+                      </li>
+                      <li>
+                        <a href=""><span>|</span>青年旅社组织</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <HostelCard />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import { reqCooperation } from '../../api'
+import { BASE_URL } from '../../utils/constants'
+export default {
+  data() {
+    return {
+      tableData: [],
+      detaillist: [],
+      BASE_URL,
+    }
+  },
+  // 将要挂载时
+  mounted() {
+    this.getCooperation()
+  },
+  methods: {
+    // 获取加盟分类
+    getCooperation() {
+      reqCooperation().then(value => {
+        console.log(value)
+        const result = value.data
+        if (result.status === 200) {
+          this.tableData = result.data
+        }
+      }),
+        reqDetaillist(cat_id).then(res => {
+          console.log(res)
+          if (result.status === 200) {
+            this.detaillist = result.data
+          }
+        })
+    },
+  },
+}
 </script>
 
 <style lang="less" scoped>
@@ -127,10 +92,16 @@ export default {}
 .main {
   width: 1080px;
   margin: 0 auto;
+  position: relative;
+  top: -60px;
+
   > .title {
     width: 100%;
     margin-bottom: 60px;
-    padding: 30px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 15px 35px -15px rgb(47 130 36 / 70%);
+    padding: 40px;
     > h4 {
       margin-bottom: 10px;
       font-size: 30px;
@@ -150,7 +121,7 @@ export default {}
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-        padding-right: 26px;
+        padding-right: 20px;
         > li {
           width: 395px;
           height: 400px;
@@ -174,7 +145,7 @@ export default {}
               bottom: -85px;
               transition: 0.3s;
               width: 100%;
-              background-color: rgba(130, 185, 35, 0.9);
+              // background-color: rgba(130, 185, 35, 0.9);
               padding: 10px;
               > h5 {
                 color: white;
@@ -201,27 +172,6 @@ export default {}
         }
       }
     }
-    /*  > .aside {
-      > ul {
-        > li {
-          a {
-            display: block;
-            width: 240px;
-            height: 80px;
-            line-height: 80px;
-            padding-left: 70px;
-            border-radius: 8px;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            background-color: #87c524;
-            background-image: url(../../assets/img/cooperation/exhibition-r-icon4.png);
-            // background-position-x: -1px;
-            background-size: 20px;
-          }
-        }
-      }
-    } */
   }
 }
 </style>
