@@ -7,11 +7,11 @@
       <div class="nav">
         <h2>最新资讯</h2>
         <div class="nav-list">
-          <a href="">视频</a>
-          <a href="">加盟消息</a>
-          <a href="">精彩活动</a>
-          <a href="">总部动态</a>
-          <a href="">旅社动态</a>
+          <button @click="$router.push(`/latestNews/type=1`)">视频</button>
+          <button @click="$router.push(`/latestNews/type=2`)">加盟消息</button>
+          <button @click="$router.push(`/latestNews/type=3`)">精彩活动</button>
+          <button @click="$router.push(`/latestNews/type=4`)">总部动态</button>
+          <button @click="$router.push(`/latestNews/type=5`)">旅社动态</button>
         </div>
       </div>
       <div class="main">
@@ -93,7 +93,7 @@ export default {
       margin-bottom: 10px;
     }
     > .nav-list {
-      > a {
+      > button {
         font-size: 14px;
         display: inline-block;
         width: 110px;
@@ -103,6 +103,10 @@ export default {
         text-align: center;
         color: #fff;
         background-color: #87c524;
+        border: none;
+      }
+      > button:hover {
+        background-color: #f7941c;
       }
     }
   }
