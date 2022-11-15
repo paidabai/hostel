@@ -16,39 +16,12 @@
       </div>
       <div class="main">
         <div class="left">
-          <div class="item">
+          <div class="item" v-for="item in latestNews" :key="item.id">
             <a href="">
-              <img src="../../assets/img/1.jpg" alt="" />
+              <img :src="item.cover" alt="" />
             </a>
             <a href="">
-              <h3>YHA云南夏令营 | “人与自然”（6-11岁）</h3>
-            </a>
-          </div>
-
-          <div class="item">
-            <a href="">
-              <img src="../../assets/img/2.jpg" alt="" />
-            </a>
-            <a href="">
-              <h3>青年旅舍第一批免费电子卡—送给谁？</h3>
-            </a>
-          </div>
-
-          <div class="item">
-            <a href="">
-              <img src="../../assets/img/3.jpg" alt="" />
-            </a>
-            <a href="">
-              <h3>这个周末，来深圳慈展会和我们偶遇吧</h3>
-            </a>
-          </div>
-
-          <div class="item">
-            <a href="">
-              <img src="../../assets/img/4.png" alt="" />
-            </a>
-            <a href="">
-              <h3>开放征稿啦｜投稿你的旅行笔记，有小礼物等你拿</h3>
+              <h3>{{ item.title }}</h3>
             </a>
           </div>
         </div>
@@ -63,10 +36,32 @@
 
 <script>
 import HostelCard from "../../components/HostelCard/index.vue";
+import axios from "axios";
 export default {
   name: "HostelList",
   components: {
     HostelCard,
+  },
+
+  data() {
+    return {
+      latestNews: [],
+    };
+  },
+
+  // 将要挂载时，就请求回最新资讯全部信息
+  mounted() {
+    this.getLatestNews();
+  },
+  methods: {
+    getLatestNews() {
+      let url = "http://localhost:5000/latestNews";
+      axios.get(url).then(res => {
+        console.log(res);
+        this.latestNews = res.data.data; //最新资讯全部信息存入 latestNews数组
+        console.log(this.latestNews); //查看是否存入成功
+      });
+    },
   },
 };
 </script>
