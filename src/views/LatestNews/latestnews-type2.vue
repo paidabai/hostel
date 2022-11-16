@@ -94,6 +94,9 @@ export default {
       margin-bottom: 10px;
     }
     > .nav-list {
+      > :nth-child(2) {
+        background-color: #f7941c;
+      }
       > button {
         font-size: 14px;
         display: inline-block;
