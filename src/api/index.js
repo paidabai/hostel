@@ -8,7 +8,8 @@ export const reqHostelNav = () => ajax(`${BASE_URL}/hostelNav`,{})
 // 获取全部的旅舍
 export const reqHostelList = () => ajax(`${BASE_URL}/hostelList`,{})
 
-// 获取宿舍公益卡片信息
-export const reqHostelPublicGoodList = () => ajax(`${BASE_URL}/hostelPublicGoodList`,{})
+// 最新资讯 
+export const reqLatestNews = () => ajax(`${BASE_URL}/latestNews`,{})
 
-// 会员卡 
+// 最新资讯的分类
+export const reqLatestNewsType = () => ajax(`${BASE_URL}/latestnewsType`,{})

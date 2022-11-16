@@ -7,11 +7,14 @@
       <div class="nav">
         <h2>最新资讯</h2>
         <div class="nav-list">
-          <button @click="$router.push(`/latestNews/1`)">视频</button>
+          <button v-for="item in latesnewsTypes" :key="item.id">
+            {{ item.name }}
+          </button>
+          <!-- <button @click="$router.push(`/latestNews/1`)">视频</button>
           <button @click="$router.push(`/latestNews/2`)">加盟消息</button>
           <button @click="$router.push(`/latestNews/3`)">精彩活动</button>
           <button @click="$router.push(`/latestNews/4`)">总部动态</button>
-          <button @click="$router.push(`/latestNews/5`)">旅舍动态</button>
+          <button @click="$router.push(`/latestNews/5`)">旅舍动态</button> -->
         </div>
       </div>
       <div class="main">
@@ -35,6 +38,8 @@
 </template>
 
 <script>
+import { reqLatestNews } from "../../api";
+import { reqLatestNewsType } from "../../api";
 import HostelCard from "../../components/HostelCard/index.vue";
 import axios from "axios";
 export default {
@@ -45,20 +50,31 @@ export default {
   data() {
     return {
       latestNews: [],
+      latesnewsTypes: [],
     };
   },
 
   // 将要挂载时，就请求回 最新资讯全部信息
   mounted() {
     this.getLatestNews();
+    this.getLatestNewsType();
   },
   methods: {
+    gitup() {},
+
     getLatestNews() {
-      let url = "http://localhost:5000/latestNews";
-      axios.get(url).then(res => {
+      reqLatestNews().then(res => {
         console.log(res);
         this.latestNews = res.data.data; //最新资讯全部信息 存入latestNews数组
         console.log(this.latestNews); //查看是否存入成功
+      });
+    },
+
+    getLatestNewsType() {
+      reqLatestNewsType().then(res => {
+        console.log(res);
+        this.latesnewsTypes = res.data.data; //最新资讯分类的全部信息 存入latesnewsType数组
+        console.log(this.latesnewsTypes); //查看是否存入成功
       });
     },
   },
