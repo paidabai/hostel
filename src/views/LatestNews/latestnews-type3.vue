@@ -16,7 +16,7 @@
       </div>
       <div class="main">
         <div class="left">
-          <div class="item" v-for="item in latestNews" :key="item.id">
+          <div class="item" v-for="item in activities" :key="item.id">
             <a href="">
               <img :src="item.cover" alt="" />
             </a>
@@ -44,21 +44,23 @@ export default {
 
   data() {
     return {
-      latestNews: [],
+      activities: [],
     };
   },
 
-  // 将要挂载时，就请求回 最新资讯全部信息
+  // 将要挂载时，就请求回 精彩活动全部信息
   mounted() {
-    this.getLatestNews();
+    this.gitActivities();
   },
   methods: {
-    getLatestNews() {
+    gitActivities() {
       let url = "http://localhost:5000/latestNews";
       axios.get(url).then(res => {
         console.log(res);
-        this.latestNews = res.data.data; //最新资讯全部信息 存入latestNews数组
-        console.log(this.latestNews); //查看是否存入成功
+        let arr = res.data.data;
+        let x = arr.filter(v => v.type == 3);
+        this.activities = x; //精彩活动全部信息 存入 activities数组
+        console.log(this.activities); //查看是否存入成功
       });
     },
   },

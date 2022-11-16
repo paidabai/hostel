@@ -29,7 +29,32 @@ const router = new VueRouter({
     {
       path: '/latestNews',
       name: 'latestNews',
-      component:latestNews
+      component:latestNews,
+    },
+    {
+      path:'/latestNews/1',
+      name:'/latestNews/1',//不可重复
+      component:()=>import('../views/LatestNews/latestnews-type1.vue'),
+    },
+    {
+      path:'/latestNews/2',
+      name:'/latestNews/2',//不可重复
+      component:()=>import('../views/LatestNews/latestnews-type2.vue'),
+    },
+    {
+      path:'/latestNews/3',
+      name:'/latestNews/3',//不可重复
+      component:()=>import('../views/LatestNews/latestnews-type3.vue'),
+    },
+    {
+      path:'/latestNews/4',
+      name:'/latestNews/4',//不可重复
+      component:()=>import('../views/LatestNews/latestnews-type4.vue'),
+    },
+    {
+      path:'/latestNews/5',
+      name:'/latestNews/5',//不可重复
+      component:()=>import('../views/LatestNews/latestnews-type5.vue'),
     },
   ]
 })

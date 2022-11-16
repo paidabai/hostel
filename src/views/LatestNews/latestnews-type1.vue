@@ -16,7 +16,7 @@
       </div>
       <div class="main">
         <div class="left">
-          <div class="item" v-for="item in latestNews" :key="item.id">
+          <div class="item" v-for="item in videos" :key="item.id">
             <a href="">
               <img :src="item.cover" alt="" />
             </a>
@@ -44,21 +44,23 @@ export default {
 
   data() {
     return {
-      latestNews: [],
+      videos: [],
     };
   },
 
-  // 将要挂载时，就请求回 最新资讯全部信息
+  // 将要挂载时，就请求回 视频全部信息
   mounted() {
-    this.getLatestNews();
+    this.getVideos();
   },
   methods: {
-    getLatestNews() {
+    getVideos() {
       let url = "http://localhost:5000/latestNews";
       axios.get(url).then(res => {
         console.log(res);
-        this.latestNews = res.data.data; //最新资讯全部信息 存入latestNews数组
-        console.log(this.latestNews); //查看是否存入成功
+        let arr = res.data.data;
+        let x = arr.filter(v => v.type == 1);
+        this.videos = x; //视频全部信息 存入 videos数组
+        console.log(this.videos); //查看是否存入成功
       });
     },
   },

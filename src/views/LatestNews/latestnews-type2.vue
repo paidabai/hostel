@@ -16,7 +16,7 @@
       </div>
       <div class="main">
         <div class="left">
-          <div class="item" v-for="item in latestNews" :key="item.id">
+          <div class="item" v-for="item in joins" :key="item.id">
             <a href="">
               <img :src="item.cover" alt="" />
             </a>
@@ -44,21 +44,23 @@ export default {
 
   data() {
     return {
-      latestNews: [],
+      joins: [],
     };
   },
 
-  // 将要挂载时，就请求回 最新资讯全部信息
+  // 将要挂载时，就请求回 加盟消息全部信息
   mounted() {
-    this.getLatestNews();
+    this.getJoins();
   },
   methods: {
-    getLatestNews() {
+    getJoins() {
       let url = "http://localhost:5000/latestNews";
       axios.get(url).then(res => {
         console.log(res);
-        this.latestNews = res.data.data; //最新资讯全部信息 存入latestNews数组
-        console.log(this.latestNews); //查看是否存入成功
+        let arr = res.data.data;
+        let x = arr.filter(v => v.type == 2);
+        this.joins = x; //加盟消息全部信息 存入 joins数组
+        console.log(this.joins); //查看是否存入成功
       });
     },
   },
