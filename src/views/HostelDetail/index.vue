@@ -1,10 +1,8 @@
 <template>
   <div class="container">
     <div class="center">
-      <DetailHeader />
+      <DetailHeader :hostelName="hostelName"/>
       <HostelInfo />
-     <div style="width: 100px; height: 500px"></div>
-
     </div>
   </div>
 </template>
@@ -15,6 +13,7 @@ import {reqHostelDetail, reqHostelType} from "../../api";
 import DetailHeader from './DetailHeader/index.vue'
 // 引入旅舍详情的信息组件
 import HostelInfo from './HostelInfo/index.vue'
+import {BASE_URL} from "../../utils/constants";
 
 export default {
   name: "HostelDetail",
@@ -23,10 +22,7 @@ export default {
     DetailHeader,
     HostelInfo
   },
-  data() {
-    return {}
-  },
-  props: ['hostelId'],
+  props: ['hostelId', 'hostelName'],
   mounted() {
     this.getHostelDetail()
     this.getHostelType()
@@ -36,8 +32,16 @@ export default {
     getHostelDetail() {
       reqHostelDetail(this.hostelId).then(value => {
         const result = value.data
-        if (result.status === 200) {
-          console.log(result.data)
+        if (result.status === 200 && result.data.length !== 0) {
+          // 格式化后的img数组
+          const formatImgList = []
+          // 遍历hostelImg添加img的地址前缀，添加到formatImgList
+          result.data[0].hostelImg.forEach(item => {
+            item = `${BASE_URL}/hostelImg/${item}`
+            formatImgList.push(item)
+          })
+          // 修改原来的数据
+          result.data[0].hostelImg = formatImgList
         }
       })
     },
@@ -46,11 +50,11 @@ export default {
       reqHostelType(this.hostelId).then(value => {
         const result = value.data
         if (result.status === 200) {
-          console.log(result.data)
+          this.$bus.$emit('getHostelType', result.data)
         }
       })
-    }
-  }
+    },
+  },
 }
 </script>
 

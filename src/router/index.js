@@ -46,12 +46,13 @@ const router = new VueRouter({
     },
     // 旅舍详情
     {
-      path: '/hostelDetail/:hostelId',
+      path: '/hostelDetail/:hostelId/:hostelName',
       name: 'hostelDetail',
       component: HostelDetail,
-      props({params:{hostelId}}){
+      props({params:{hostelId, hostelName}}){
         return {
-          hostelId
+          hostelId,
+          hostelName
         }
       }
     }

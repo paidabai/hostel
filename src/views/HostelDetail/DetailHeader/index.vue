@@ -1,7 +1,7 @@
 <template>
   <div class="detail-header">
     <div class="house-book">
-      <h2>北京炮局工厂青年旅舍</h2>
+      <h2>{{hostelName}}</h2>
       <div class="price">
         <div class="house-price">
           <p>房间</p>
@@ -33,23 +33,24 @@
       </div>
     </div>
     <div class="house-img">
-      <el-carousel :interval="5000" arrow="always" height="450px">
-        <el-carousel-item v-for="item in imgList" :key="item">
-          <img :src="item" alt="">
-        </el-carousel-item>
-      </el-carousel>
+      <DetailImg />
     </div>
   </div>
 </template>
 
 <script>
+import DetailImg from "../DetailImg/index.vue";
+
 export default {
   name: "DetailHeader",
+  props: ['hostelName'],
+  components: {
+    DetailImg
+  },
   data() {
     return{
-      imgList: [
-        'http://111.230.248.218:1500/fileUpload/104799/16008457382791600845738279_0.jpg',
-      ],
+      // // 旅舍名
+      // hostelKeepName: this.hostelName,
       // 分享图标的数据
       shareList: [
         {
