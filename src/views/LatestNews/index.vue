@@ -7,14 +7,13 @@
       <div class="nav">
         <h2>最新资讯</h2>
         <div class="nav-list">
-          <button v-for="item in latesnewsTypes" :key="item.id">
+          <button
+            v-for="item in latesnewsTypes"
+            :key="item.id"
+            @click="submint(item.id)"
+          >
             {{ item.name }}
           </button>
-          <!-- <button @click="$router.push(`/latestNews/1`)">视频</button>
-          <button @click="$router.push(`/latestNews/2`)">加盟消息</button>
-          <button @click="$router.push(`/latestNews/3`)">精彩活动</button>
-          <button @click="$router.push(`/latestNews/4`)">总部动态</button>
-          <button @click="$router.push(`/latestNews/5`)">旅舍动态</button> -->
         </div>
       </div>
       <div class="main">
@@ -41,7 +40,6 @@
 import { reqLatestNews } from "../../api";
 import { reqLatestNewsType } from "../../api";
 import HostelCard from "../../components/HostelCard/index.vue";
-import axios from "axios";
 export default {
   components: {
     HostelCard,
@@ -50,6 +48,7 @@ export default {
   data() {
     return {
       latestNews: [],
+      latestNewss: [],
       latesnewsTypes: [],
     };
   },
@@ -60,7 +59,12 @@ export default {
     this.getLatestNewsType();
   },
   methods: {
-    gitup() {},
+    submint(id) {
+      console.log(id);
+      let x = this.latestNews.filter(v => v.type == id);
+      console.log(x); //查看是否存入成功
+      // this.latestNews = x; //筛选后的全部信息 重新存入 latestNews数组
+    },
 
     getLatestNews() {
       reqLatestNews().then(res => {
