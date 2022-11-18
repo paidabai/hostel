@@ -18,7 +18,7 @@
       </div>
       <div class="main">
         <div class="left">
-          <div class="item" v-for="item in latestNews" :key="item.id">
+          <div class="item" v-for="item in eachNews" :key="item.id">
             <a href="">
               <img :src="item.cover" alt="" />
             </a>
@@ -50,6 +50,7 @@ export default {
       latestNews: [],
       latestNewss: [],
       latesnewsTypes: [],
+      eachNews: [],
     };
   },
 
@@ -63,13 +64,14 @@ export default {
       console.log(id);
       let x = this.latestNews.filter(v => v.type == id);
       console.log(x); //查看是否存入成功
-      // this.latestNews = x; //筛选后的全部信息 重新存入 latestNews数组
+      this.eachNews = x; //筛选后的全部信息 重新存入 eachNews数组
     },
 
     getLatestNews() {
       reqLatestNews().then(res => {
         console.log(res);
         this.latestNews = res.data.data; //最新资讯全部信息 存入latestNews数组
+        this.eachNews = res.data.data; //最新资讯全部信息 备份存入eachNews数组
         console.log(this.latestNews); //查看是否存入成功
       });
     },

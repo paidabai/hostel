@@ -38,12 +38,6 @@ const router = new VueRouter({
       name: 'latestNews',
       component:latestNews,
     },
-    {
-      path:'/latestNews/1',
-      name:'/latestNews/1',//不可重复
-      component:()=>import('../views/LatestNews/latestnews-type1.vue'),
-    },
-    
   ]
 })
 
