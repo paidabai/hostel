@@ -18,7 +18,12 @@
       </div>
       <div class="main">
         <div class="left">
-          <div class="item" v-for="item in eachNews" :key="item.id">
+          <div
+            class="item"
+            v-for="item in eachNews"
+            :key="item.id"
+            @click="$router.push(`/newsDetails?id=${item.id}`)"
+          >
             <a href="">
               <img :src="item.cover" alt="" />
             </a>
@@ -153,6 +158,11 @@ export default {
         border: 1px solid white;
         border-radius: 5px;
         background-color: white;
+        &:hover {
+          background-color: #ddd;
+          transform: scale(1.05);
+          transition: 0.3s;
+        }
 
         > a > img {
           width: 100%;

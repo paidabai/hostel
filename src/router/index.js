@@ -38,6 +38,12 @@ const router = new VueRouter({
       name: 'latestNews',
       component:latestNews,
     },
+    {
+      path: '/newsDetails',
+      name: 'newsDetails',
+      component:()=>import('../views/LatestNews/newsdetails.vue'),
+    },
+   
   ]
 })
 
