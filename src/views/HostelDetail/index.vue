@@ -2,13 +2,13 @@
   <div class="container">
     <div class="center">
       <DetailHeader :hostelName="hostelName"/>
-      <HostelInfo />
+      <HostelInfo :hostelName="hostelName"/>
     </div>
   </div>
 </template>
 
 <script>
-import {reqHostelDetail, reqHostelType} from "../../api";
+import {reqHostelDetail, reqHostelServices, reqHostelType} from "../../api";
 // 引入旅舍详情的头部组件
 import DetailHeader from './DetailHeader/index.vue'
 // 引入旅舍详情的信息组件
@@ -26,22 +26,16 @@ export default {
   mounted() {
     this.getHostelDetail()
     this.getHostelType()
+    this.getHostelServices()
   },
   methods: {
     // 获取旅舍详情
     getHostelDetail() {
       reqHostelDetail(this.hostelId).then(value => {
         const result = value.data
-        if (result.status === 200 && result.data.length !== 0) {
-          // 格式化后的img数组
-          const formatImgList = []
-          // 遍历hostelImg添加img的地址前缀，添加到formatImgList
-          result.data[0].hostelImg.forEach(item => {
-            item = `${BASE_URL}/hostelImg/${item}`
-            formatImgList.push(item)
-          })
-          // 修改原来的数据
-          result.data[0].hostelImg = formatImgList
+        if (result.status === 200) {
+          // 添加数据在store 的state中
+          this.$store.dispatch('hostelDetailOptions/saveHostelDetail', result.data)
         }
       })
     },
@@ -54,6 +48,15 @@ export default {
         }
       })
     },
+    // 获取旅舍设施与服务
+    getHostelServices() {
+      reqHostelServices(this.hostelId).then(value => {
+        const result = value.data
+        if (result.status === 200) {
+          this.$bus.$emit('getHostelServices', result.data)
+        }
+      })
+    }
   },
 }
 </script>

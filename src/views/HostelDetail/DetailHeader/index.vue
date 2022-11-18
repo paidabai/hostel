@@ -5,19 +5,32 @@
       <div class="price">
         <div class="house-price">
           <p>房间</p>
-          <h3>
-            <strong>278</strong>
+          <h3 v-show="hostelDetailData.length">
+            <strong>{{hostelDetailData[0]?.room}}</strong>
             元起
+          </h3>
+          <h3 class="noHouse" v-show="!hostelDetailData.length">
+            暂无
           </h3>
         </div>
         <div class="bed-price">
           <p>床位</p>
-          <h3>
-            <strong>75</strong>
+          <h3 v-show="hostelDetailData.length">
+            <strong>{{hostelDetailData[0]?.bed}}</strong>
             元起
           </h3>
+          <h3 class="noHouse" v-show="!hostelDetailData.length">
+            暂无
+          </h3>
         </div>
-        <el-button class="btn-book" round>主要按钮</el-button>
+        <el-button
+            class="btn-book"
+            round
+            @click="goBook"
+            v-scroll-to="{
+             el: '#move',
+             duration: 500, //滚动时间
+             }">立即预定</el-button>
         <div class="share">
           <span>分享到:</span>
           <div class="share-icon">
@@ -40,6 +53,7 @@
 
 <script>
 import DetailImg from "../DetailImg/index.vue";
+import {mapState} from "vuex";
 
 export default {
   name: "DetailHeader",
@@ -47,10 +61,11 @@ export default {
   components: {
     DetailImg
   },
+  computed: {
+    ...mapState('hostelDetailOptions', ['hostelDetailData'])
+  },
   data() {
     return{
-      // // 旅舍名
-      // hostelKeepName: this.hostelName,
       // 分享图标的数据
       shareList: [
         {
@@ -74,6 +89,11 @@ export default {
       ]
     }
   },
+  methods: {
+    goBook(){
+      this.$bus.$emit('goBack')
+    }
+  }
 }
 </script>
 
@@ -111,6 +131,11 @@ export default {
           width: 50%;
           border-right: 1px solid #e8e8e8;
         }
+        .noHouse {
+          font-size: 20px;
+          color: #f7941c;
+          text-align: center;
+        }
         .bed-price {
           width: 45%;
           p {
@@ -124,12 +149,16 @@ export default {
     }
   }
   .btn-book {
-    background-color: #f7941c;
-    color: #fff;
+    background-color: #f7941c !important;
+    color: #fff !important;
     font-size: 16px;
     width: 290px;
     height: 50px;
     margin-top: 35px;
+    &:hover {
+      background-color: #f7941c;
+      color: #fff;
+    }
   }
   .share {
     display: flex;

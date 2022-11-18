@@ -6,35 +6,30 @@
      duration: 0, //滚动时间
      }" v-model="activeName" class="info-nav">
       <el-tab-pane label="旅舍概况" name="first">
-        <div class="hostel-survey" style="height: 500px">
-          <div class="img">
-            <img src="" alt="">
-          </div>
-          <div class="introduce">
-            北京炮局工厂青年旅舍
-            北京炮局工厂青年旅舍坐落于著名的雍和宫景点后方,步行大约5分钟即可到达.旅舍交通十分便利,有多条公交车辆以及地铁.炮局工厂是北京第一家具有＼"loft＼"风格的国际青年旅舍,在这里你可以自由的放松身心.
-            P.LOFT 紧贴着雍和宫,胡同里都是寻常百姓人家.这里以前曾是监狱,军火库,工厂.现在,是一家真正的青年旅舍,没有奢华的装修,尽可能多的保留了旧工厂的原貌.
-            我们提供干净的床单,舒适的床,价格低廉且美味绝伦的食物,更为您提供了超大的公共空间和亲近自然的户外空间,我们希望您不要呆在房间里,而是与全球的青年朋友沟通分享旅行的快乐.中国青年旅舍已经开始变化,更多的青年旅舍看起来更像商务酒店.你知道的,住宾馆和生活在北京,是截然不同的,期待你的到来.LIVE IN P.LOFT. LIVE IN BEIJING.
-          </div>
-          <div class="service">
-            <div class="block block1">
-              <h3>营业时间</h3>
-              <div class="block-c clearfix">
-                  <span>
-                        前台 :<strong>10:00 到 18:00</strong>
-                 <br>
-                      入住时间:<strong>10:00</strong>后<br>房间保留到<strong> 18:00前</strong>
-                  </span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <HostelSurvey :hostelName="hostelName"/>
       </el-tab-pane>
       <el-tab-pane label="房型及价格" name="second">
         <ChoiceHouse />
       </el-tab-pane>
       <el-tab-pane label="地图" name="third">角色管理</el-tab-pane>
-      <el-tab-pane label="设施与服务" name="fourth">角色管理</el-tab-pane>
+      <el-tab-pane label="设施与服务" name="fourth">
+        <div class="services">
+          <h3 class="title">设施与服务</h3>
+          <div class="services-content">
+            <dl v-for="item in service" :key="item.id">
+              <dt>{{item.title}}</dt>
+              {{services[0].item.type}}
+<!--              <dd v-for="item2 in services[0].item.type">-->
+<!--                <span>•</span>{{item2}}-->
+<!--              </dd>-->
+            </dl>
+<!--            <dl>-->
+<!--              <dt>休闲和健身</dt>-->
+<!--              <dd><span>•</span>公共休息室</dd><dd><span>•</span>花园</dd><dd><span>•</span>阳台/露台/天井</dd>-->
+<!--            </dl>-->
+          </div>
+        </div>
+      </el-tab-pane>
       <el-tab-pane label="图片" name="fifth">
         <div class="house-img">
           <h3 class="title">旅舍图片</h3>
@@ -69,31 +64,46 @@
 <script>
 import DetailImg from "../DetailImg/index.vue";
 import ChoiceHouse from "./ChoiceHouse/index.vue";
+import HostelSurvey from "./HostelSurvey/index.vue";
+import {mapState} from 'vuex'
 
 export default {
   name: "HostelInfo",
+  props: ['hostelName'],
   components: {
     DetailImg,
-    ChoiceHouse
+    ChoiceHouse,
+    HostelSurvey
   },
   data() {
     return {
       activeName: 'first',
       activeStyle: 'dynamic-title dynamic-title-active',
-      activeStyle2: 'dynamic-title'
+      activeStyle2: 'dynamic-title',
+      service: [
+        {id: 1, title: '休闲和健身', type: 'health'},
+        {id: 2, title: '网络设施', type: 'network'},
+        {id: 3, title: '餐饮', type: 'restaurant'},
+        {id: 4, title: '旅舍提供', type: 'equipment'},
+        {id: 5, title: '景点、旅游设施', type: 'travel'},
+        {id: 6, title: '旅舍提供的服务', type: 'service'},
+        {id: 7, title: '便利设施', type: 'amenities'},
+      ],
+      services: [],
     };
   },
   // 将要挂载时
   mounted(){
     // 监听
     window.addEventListener("scroll", this.scrollType);
+    this.$bus.$on('goBack', this.goBook)
+    this.$bus.$on('getHostelServices', value => this.services = value)
   },
   // 组件将要销毁时
   beforeDestroy() {
     // 销毁监听
     window.removeEventListener("scroll", this.scrollType);
   },
-
   methods: {
     scrollType() {
       // 获取滚动的距离
@@ -127,7 +137,13 @@ export default {
         this.activeStyle = 'dynamic-title'
         this.activeStyle2 = 'dynamic-title dynamic-title-active'
       }
+    },
+    goBook() {
+      this.activeName = 'second'
     }
+  },
+  computed: {
+    ...mapState('hostelDetailOptions', ['hostelDetailData'])
   }
 }
 </script>
@@ -280,26 +296,36 @@ export default {
     margin-bottom: 25px;
     .house-img {
       width: 1035px;
-      height: 800px;
       margin: 0 auto;
+      height: 800px;
       img {
         width: 100%;
         height: 700px;
       }
     }
-    .hostel-survey {
-      width: 1080px;
-      padding: 25px 20px;
-      display: flex;
-      justify-content: space-between;
-      .img {
-        width: 200px;
-      }
-      .introduce {
-        width: 405px;
-      }
-      .service {
-        width: 390px;
+    .services {
+      width: 1035px;
+      margin: 0 auto;
+      padding-bottom: 30px;
+      .services-content {
+        display: flex;
+        flex-wrap: wrap;
+        dl {
+          width: 255px;
+          padding-left: 40px;
+          padding-top: 30px;
+          font-size: 14px;
+          span {
+            color: #9acd54;
+            margin-right: 5px;
+          }
+          dt {
+            font-weight: bold;
+            dd {
+              color: #333;
+            }
+          }
+        }
       }
     }
     .title {

@@ -16,3 +16,6 @@ export const reqHostelType = (hostelId) => ajax(`${BASE_URL}/hostelType`, {hoste
 
 // 获取宿舍公益卡片信息
 export const reqHostelPublicGoodList = () => ajax(`${BASE_URL}/hostelPublicGoodList`,{})
+
+// 获取旅舍的设施和服务
+export const reqHostelServices = (hostelId) => ajax(`${BASE_URL}/hostelServices`, {hostelId})

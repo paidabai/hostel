@@ -60,7 +60,6 @@
                      :value="item">
           </el-option>
         </el-select>
-          {{scope.row.choseamount}}
         </template>>
       </el-table-column>
     </el-table>
@@ -76,7 +75,6 @@ export default {
   mounted() {
     this.$bus.$on('getHostelType', value => {
       this.tableData = value
-      console.log(value)
     })
   },
   data() {

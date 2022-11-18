@@ -1,20 +1,23 @@
 <template>
   <el-carousel :interval="5000" arrow="always">
-    <el-carousel-item v-for="item in imgList" :key="item">
+    <el-carousel-item v-for="item in hostelImgList" :key="item">
       <img :src="item" alt="">
     </el-carousel-item>
   </el-carousel>
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
   name: "DetailImg",
   mounted() {
   },
+  computed: {
+    ...mapGetters('hostelDetailOptions',['hostelImgList'])
+  },
   data() {
     return {
-      // 图片的地址数组
-      imgList: [],
     }
   }
 }
