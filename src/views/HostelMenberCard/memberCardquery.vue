@@ -4,15 +4,25 @@
       <h2>会员卡寄送信息查询</h2>
       <div>
         <p>想查看您的会员卡寄送情况？请提供您的订单号和收件人手机号</p>
-        <el-form class="form" label-width="auto">
-          <el-form-item style="width: 410px">
-            <el-input placeholder="输入订单号"></el-input>
+        <el-form :inline="true" class="form" label-width="auto">
+          <el-form-item>
+            <el-input
+              style="width: 410px; margin-right: 10px"
+              placeholder="输入订单号"
+            ></el-input>
           </el-form-item>
-          <el-form-item style="width: 410px">
-            <el-input placeholder="输入收件人手机号"></el-input>
+          <el-form-item>
+            <el-input
+              style="width: 410px"
+              placeholder="输入收件人手机号"
+            ></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-row>
+              <el-button type="warning" size="medium" round>查询</el-button>
+            </el-row>
           </el-form-item>
         </el-form>
-        <button>查询</button>
       </div>
     </div>
   </div>
@@ -55,6 +65,16 @@ export default {};
     display: flex;
     flex-direction: column;
     align-items: center;
+    >p{
+      padding:0 30px 30px;
+      font-size: 16px;
+    }
+    .el-button--warning {
+      padding: 15px 80px;
+      border-radius: 50px;
+      margin: 50px 320px 0px;
+      font-size: 16px;
+    }
   }
 }
 </style>

@@ -65,10 +65,10 @@ export default {};
     margin: auto;
     background-color: #fff;
     overflow: hidden;
-    padding: 20px;
+    padding: 30px;
     border-radius: 10px;
     box-shadow: 0 0 5px 1px #ccc;
-    font-size: 14px;
+    font-size: 15px;
     color: #333;
     > h2 {
       border-bottom: 1px solid #ccc;

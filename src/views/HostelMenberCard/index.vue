@@ -105,11 +105,12 @@ a:hover,button:hover{
 }
 // 会员申请
 .member-one {
+  border-top: 2px solid #ddd;
   height: 700px;
-  width: 1920px;
+  min-width: 1080px;
   margin: auto;
-  background: url("../../assets/img/membership-banner.jpg") no-repeat;
-  background-size: cover;
+  background: url("../../assets/img/membership-banner.jpg") no-repeat center;
+  // background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -183,10 +184,9 @@ a:hover,button:hover{
 // 第三楼
 .member-three {
   height: 1050px;
-  width: 1960px;
+  min-width: 1080px;
   margin: auto;
-  background: url("../../assets/img/member3.jpg") no-repeat;
-  background-size: cover;
+  background: url("../../assets/img/member3.jpg") no-repeat center;
   display: flex;
   flex-direction: column;
   align-items: center;
