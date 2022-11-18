@@ -35,9 +35,39 @@ const router = new VueRouter({
     }, 
     //会员卡
     {
-      path: '/hostelMenberCard',
+      path: '/hostelMenberCard/',
       name: 'hostelMenberCard ',
-      component: hostelMenberCard 
+      component: hostelMenberCard, 
+    },
+    // 申请会员卡---会员卡类型
+    {
+      path: '/memberCardType',
+      name: 'memberCardType ',
+      component: ()=>import('../views/HostelMenberCard/memberCardType.vue'), 
+    },
+    // 会员续卡
+    {
+      path:'/membershipRenewal',
+      name:'membershipRenewal',
+      component:()=>import('../views/HostelMenberCard/membershipRenewal.vue')
+    },
+    // 会员优惠
+    {
+      path:'/memberBenefits',
+      name:'memberBenefits',
+      component:()=>import('../views/HostelMenberCard/memberBenefits.vue')
+    },
+    // 卡号查询
+    {
+      path:'/memberInfoquery',
+      name:'memberInfoquery',
+      component:()=>import('../views/HostelMenberCard/memberInfoquery.vue')
+    },
+    // 会员卡寄送查询
+    {
+      path:'/memberCardquery',
+      name:'memberCardquery',
+      component:()=>import('../views/HostelMenberCard/memberCardquery.vue')
     },
   ]
 })

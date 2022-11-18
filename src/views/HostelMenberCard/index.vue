@@ -3,9 +3,9 @@
     <div class="member-one">
       <h1>YHA®会员卡，带您享尽全球青年旅舍®住宿优惠</h1>
       <div class="member-btn">
-        <a href="">申请会员卡</a>
-        <a href="">会员续卡</a>
-        <a href="">会员优惠</a>
+        <a  @click="$router.push(`/memberCardType`)">申请会员卡</a>
+        <a  @click="$router.push(`/membershipRenewal`)">会员续卡</a>
+        <a  @click="$router.push(`/memberBenefits`)">会员优惠</a>
       </div>
     </div>
     <div class="member-two">
@@ -48,11 +48,11 @@
           <a href="">会员卡辨伪</a>
           <a href="">代理商加盟</a>
         </div>
-        <a href="">马上申请</a>
+        <a  @click="$router.push(`/memberCardType`)">马上申请</a>
       </div>
       <div class="container-bottom">
         <h2>如果您的会员已过期，可申请续卡</h2>
-        <a href="">马上续卡</a>
+        <a  @click="$router.push(`/membershipRenewal`)">马上续卡</a>
       </div>
     </div>
     <!-- 第四楼 -->
@@ -83,8 +83,8 @@
     <div class="member-five">
       <h2>如果您的会员已过期，可申请续卡</h2>
       <div class="btns">
-        <a href="">会员卡号查询</a>
-        <a href="">寄送信息查询</a>
+        <a @click="$router.push(`/memberInfoquery`)">会员卡号查询</a>
+        <a @click="$router.push(`/memberCardquery`)">寄送信息查询</a>
       </div>
     </div>
   </div>
