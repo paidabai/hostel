@@ -133,7 +133,7 @@ export default {
         let marker = new AMap.Marker({
           icon: new AMap.Icon({
             size: new AMap.Size(37, 57),    // 图标尺寸
-            image: '../../lxzb-ditu.png',  // Icon的图像
+            image: '../../../src/assets/logo/lxzb-ditu.png',  // Icon的图像
             imageOffset: new AMap.Pixel(0, 0),  // 图像相对展示区域的偏移量，适于雪碧图等
           }),
           position: new AMap.LngLat(104.088860,30.647898),

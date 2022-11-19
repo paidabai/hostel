@@ -53,7 +53,7 @@ export default {
   props: ['hostelName'],
   computed: {
     ...mapState('hostelDetailOptions', ['hostelDetailData'])
-  }
+  },
 }
 </script>
 

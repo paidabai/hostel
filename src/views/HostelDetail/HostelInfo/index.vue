@@ -11,22 +11,22 @@
       <el-tab-pane label="房型及价格" name="second">
         <ChoiceHouse />
       </el-tab-pane>
-      <el-tab-pane label="地图" name="third">角色管理</el-tab-pane>
+      <el-tab-pane label="地图" name="third">
+        <div class="map">
+          <h3 class="title">地图</h3>
+          <HostelMap :hostelName="hostelName"/>
+        </div>
+      </el-tab-pane>
       <el-tab-pane label="设施与服务" name="fourth">
         <div class="services">
           <h3 class="title">设施与服务</h3>
-          <div class="services-content">
+          <div class="services-content" v-show="services.length">
             <dl v-for="item in service" :key="item.id">
               <dt>{{item.title}}</dt>
-              {{services[0].item.type}}
-<!--              <dd v-for="item2 in services[0].item.type">-->
-<!--                <span>•</span>{{item2}}-->
-<!--              </dd>-->
+              <dd v-for="item in services[0]?.[item.type]">
+                <span>•</span>{{item}}
+              </dd>
             </dl>
-<!--            <dl>-->
-<!--              <dt>休闲和健身</dt>-->
-<!--              <dd><span>•</span>公共休息室</dd><dd><span>•</span>花园</dd><dd><span>•</span>阳台/露台/天井</dd>-->
-<!--            </dl>-->
           </div>
         </div>
       </el-tab-pane>
@@ -65,7 +65,7 @@
 import DetailImg from "../DetailImg/index.vue";
 import ChoiceHouse from "./ChoiceHouse/index.vue";
 import HostelSurvey from "./HostelSurvey/index.vue";
-import {mapState} from 'vuex'
+import HostelMap from "./HostelMap/index.vue"
 
 export default {
   name: "HostelInfo",
@@ -73,7 +73,8 @@ export default {
   components: {
     DetailImg,
     ChoiceHouse,
-    HostelSurvey
+    HostelSurvey,
+    HostelMap
   },
   data() {
     return {
@@ -142,9 +143,6 @@ export default {
       this.activeName = 'second'
     }
   },
-  computed: {
-    ...mapState('hostelDetailOptions', ['hostelDetailData'])
-  }
 }
 </script>
 
@@ -302,6 +300,11 @@ export default {
         width: 100%;
         height: 700px;
       }
+    }
+    .map {
+      width: 1035px;
+      margin: 0 auto;
+      padding-bottom: 30px;
     }
     .services {
       width: 1035px;
