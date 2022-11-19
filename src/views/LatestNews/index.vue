@@ -10,7 +10,7 @@
           <button
             v-for="item in latesnewsTypes"
             :key="item.id"
-            @click="submint(item.id)"
+            @click="submit(item.id)"
           >
             {{ item.name }}
           </button>
@@ -52,10 +52,9 @@ export default {
 
   data() {
     return {
-      latestNews: [],
-      latestNewss: [],
-      latesnewsTypes: [],
-      eachNews: [],
+      latestNews: [], //储存最新资讯全部信息
+      latesnewsTypes: [], //储存最新资讯5个分类名称的信息
+      eachNews: [], ////储存最新资讯5个分类各自的信息
     };
   },
 
@@ -65,7 +64,7 @@ export default {
     this.getLatestNewsType();
   },
   methods: {
-    submint(id) {
+    submit(id) {
       console.log(id);
       let x = this.latestNews.filter(v => v.type == id);
       console.log(x); //查看是否存入成功
@@ -76,7 +75,7 @@ export default {
       reqLatestNews().then(res => {
         console.log(res);
         this.latestNews = res.data.data; //最新资讯全部信息 存入latestNews数组
-        this.eachNews = res.data.data; //最新资讯全部信息 备份存入eachNews数组
+        this.eachNews = res.data.data; //最新资讯全部信息 备份存入eachNews数组，主页面初次加载完成时用
         console.log(this.latestNews); //查看是否存入成功
       });
     },
@@ -84,7 +83,7 @@ export default {
     getLatestNewsType() {
       reqLatestNewsType().then(res => {
         console.log(res);
-        this.latesnewsTypes = res.data.data; //最新资讯分类的全部信息 存入latesnewsType数组
+        this.latesnewsTypes = res.data.data; //最新资讯5个分类名称的信息 存入latesnewsType数组
         console.log(this.latesnewsTypes); //查看是否存入成功
       });
     },
@@ -155,9 +154,9 @@ export default {
         margin-bottom: 10px;
         cursor: pointer;
         padding: 14px;
-        border: 1px solid white;
+        border: 1px solid #fff;
         border-radius: 5px;
-        background-color: white;
+        background-color: #fff;
         &:hover {
           background-color: #ddd;
           transform: scale(1.05);
