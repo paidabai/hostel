@@ -112,7 +112,6 @@ export default {
         background-color: #fff;
         padding: 15px;
         border-radius: 5px;
-        height: auto;
         >p{
           font-weight: bold;
           color: #333;

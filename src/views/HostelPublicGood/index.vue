@@ -73,13 +73,18 @@ export default {
   background-color: #f5f5f5;
   .bgImg {
     > img {
-      width: 100%;
+      display: block;
+      min-width: 1080px;
+      margin: auto;
     }
   }
   .body {
     margin: auto;
     width: 1080px;
+    position: relative;
+    padding-top: 125px;
     .explain {
+      width: 1080px;
       background-color: #fff;
       z-index: 100;
       padding: 30px;
@@ -87,7 +92,8 @@ export default {
       border-radius: 10px;
       box-shadow: 0 15px 35px -15px rgb(47 130 36 / 70%);
       margin-bottom: 60px;
-      top: -25%;
+      position: absolute;
+      top: -5%;
       > h2 {
         font-size: 30px;
         line-height: 100%;

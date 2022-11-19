@@ -11,4 +11,8 @@ export const reqHostelList = () => ajax(`${BASE_URL}/hostelList`,{})
 // 获取宿舍公益卡片信息
 export const reqHostelPublicGoodList = () => ajax(`${BASE_URL}/hostelPublicGoodList`,{})
 
-// 会员卡 
+// 会员卡  会员优惠
+export const reqMemberBenefits=()=>ajax(`${BASE_URL}/memberBenefits`,{})
+
+// 获取会员卡类型 /membercardType
+export const reqMembercardType=()=>ajax(`${BASE_URL}/membercardType`,{})

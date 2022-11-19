@@ -30,20 +30,26 @@ const router = new VueRouter({
     //宿舍公益
     {
       path: '/hostelPublicGoodList',
-      name: 'hostelPublicGoodList ',
+      name: 'hostelPublicGoodList',
       component: hostelPublicGoodList 
     }, 
     //会员卡
     {
       path: '/hostelMenberCard/',
-      name: 'hostelMenberCard ',
+      name: 'hostelMenberCard',
       component: hostelMenberCard, 
     },
     // 申请会员卡---会员卡类型
     {
       path: '/memberCardType',
-      name: 'memberCardType ',
+      name: 'memberCardType',
       component: ()=>import('../views/HostelMenberCard/memberCardType.vue'), 
+    },
+    // 会员卡类型 ---- 了解更多
+    {
+      path: '/memberCardTypeMore',
+      name: 'memberCardTypeMore',
+      component: ()=>import('../views/HostelMenberCard/memberCardTypeMore.vue'), 
     },
     // 会员续卡
     {
@@ -68,7 +74,7 @@ const router = new VueRouter({
       path:'/memberCardquery',
       name:'memberCardquery',
       component:()=>import('../views/HostelMenberCard/memberCardquery.vue')
-    },
+    }, 
   ]
 })
 

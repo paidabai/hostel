@@ -3,25 +3,13 @@
     <div class="member-card">
       <h2>选择会员卡类型</h2>
       <div class="member-list">
-        <dl>
-          <dt><img src="../../assets/img/member4.1.jpg" alt="" /></dt>
+        <dl v-for="item in tableData" :key="item.id">
+          <dt><img :src="item.img" alt="" /></dt>
           <dd>
-            <h3>国际青年旅舍会员卡</h3>
-            <h4>￥50</h4>
-            <p>
-              全球通用，可以享受国内外国际青年旅舍住宿价格的优惠，同时在世界各地享有逾三千项的优惠。
-            </p>
-            <a href="">了解更多</a>
-            <button>马上申请</button>
-          </dd>
-        </dl>
-        <dl>
-          <dt><img src="../../assets/img/member4.2.jpg" alt="" /></dt>
-          <dd>
-            <h3>国际青年旅舍终身会员卡</h3>
-            <h4>￥500</h4>
-            <p>全球通用，终身有效，适合身为青年旅舍忠实粉丝的你。</p>
-            <a href="">了解更多</a>
+            <h3>{{item.title}}</h3>
+            <h4>￥{{item.price}}</h4>
+            <p>{{item.function_desc}}</p>
+            <a @click="$router.push(`/memberCardTypeMore?id=${item.id}`)">了解更多</a>
             <button>马上申请</button>
           </dd>
         </dl>
@@ -30,7 +18,31 @@
   </div>
 </template>
 <script>
-export default {};
+import { reqMembercardType } from "../../api";
+export default {
+  name: "MembercardType",
+  data() {
+    return {
+      tableData: [], 
+    };
+  },
+  // 将要挂载时
+  mounted() {
+    this.getMembercardType();
+  },
+  methods: {
+    getMembercardType() {
+      reqMembercardType().then((value) => {
+        console.log(value);
+        const result = value.data;
+        if (result.status === 200) {
+          this.tableData = result.data;
+          console.log(this.tableData);
+        }
+      });
+    },
+  },
+};
 </script>
 
 <style lang="less" scoped>
