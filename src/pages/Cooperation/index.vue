@@ -16,22 +16,91 @@
         <div class="content">
           <div class="module">
             <ul>
-              <li v-for="catlist in tableData" :key="catlist.cid">
+              <li>
                 <div>
-                  <img :src="`${BASE_URL}/cooperation/${catlist.pic}`" alt="" />
-                  <div :style="`background-color: ${catlist.bgcolor};`">
-                    <h5>{{ catlist.cname }}</h5>
-                    <ul>
-                      <!--  <li>
-                        <a href=""><span>|</span>青年旅社组织</a>
-                      </li> -->
-                      <li>
-                        <a href=""><span>|</span>青年旅社组织</a>
-                      </li>
-                      <li>
-                        <a href=""><span>|</span>青年旅社组织</a>
-                      </li>
-                    </ul>
+                  <img
+                    :src="`${BASE_URL}/cooperation/exhibition-l-iten4.jpg`"
+                    alt=""
+                  />
+                  <div style="background-color: rgba(144, 198, 44, 0.8)">
+                    <h5>加盟优势</h5>
+                    <div>
+                      <router-link
+                        v-for="item in firstList"
+                        :key="item.lid"
+                        :to="{
+                          path: '/detail/' + item.lid + '/' + item.cat_id,
+                        }"
+                      >
+                        <span>|</span>{{ item.title }}
+                      </router-link>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <img
+                    :src="`${BASE_URL}/cooperation/exhibition-l-iten5.jpg`"
+                    alt=""
+                  />
+                  <div style="background-color: rgba(246, 152, 38, 0.8)">
+                    <h5>加盟方法</h5>
+                    <div>
+                      <router-link
+                        v-for="item in twoList"
+                        :key="item.lid"
+                        :to="{
+                          path: '/detail/' + item.lid + '/' + item.cat_id,
+                        }"
+                      >
+                        <span>|</span>{{ item.title }}
+                      </router-link>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <img
+                    :src="`${BASE_URL}/cooperation/exhibition-l-iten6.jpg`"
+                    alt=""
+                  />
+                  <div style="background-color: rgba(81, 141, 189, 0.8)">
+                    <h5>品牌和资质</h5>
+                    <div>
+                      <router-link
+                        v-for="item in threeList"
+                        :key="item.lid"
+                        :to="{
+                          path: '/detail/' + item.lid + '/' + item.cat_id,
+                        }"
+                      >
+                        <span>|</span>{{ item.title }}
+                      </router-link>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <img
+                    :src="`${BASE_URL}/cooperation/exhibition-l-iten7.jpg`"
+                    alt=""
+                  />
+                  <div style="background-color: rgba(205, 58, 75, 0.8)">
+                    <h5>青旅资料库</h5>
+                    <div>
+                      <router-link
+                        v-for="item in foreList"
+                        :key="item.lid"
+                        :to="{
+                          path: '/detail/' + item.lid + '/' + item.cat_id,
+                        }"
+                      >
+                        <span>|</span>{{ item.title }}
+                      </router-link>
+                    </div>
                   </div>
                 </div>
               </li>
@@ -41,40 +110,51 @@
         </div>
       </div>
     </div>
+
+    <!-- <button @click="get()">加载详情</button> -->
   </div>
 </template>
 
 <script>
-import { reqCooperation } from '../../api'
+import { reqCooperationlists } from '../../api'
+
 import { BASE_URL } from '../../utils/constants'
 export default {
   data() {
     return {
-      tableData: [],
-      detaillist: [],
+      tableList: [],
+      firstList: [],
+      twoList: [],
+      threeList: [],
+      foreList: [],
+
+      yyyy: [],
       BASE_URL,
     }
   },
   // 将要挂载时
   mounted() {
-    this.getCooperation()
+    this.get()
   },
   methods: {
-    // 获取加盟分类
-    getCooperation() {
-      reqCooperation().then(value => {
-        console.log(value)
-        const result = value.data
-        if (result.status === 200) {
-          this.tableData = result.data
-        }
-      }),
-        reqDetaillist(cat_id).then(res => {
-          console.log(res)
-          if (result.status === 200) {
-            this.detaillist = result.data
-          }
+    get() {
+      reqCooperationlists().then(res => {
+        console.log(res)
+        this.tableList = res.data.data
+        this.firstList = this.tableList.filter(v => {
+          return v.cat_id == 10
         })
+        this.twoList = this.tableList.filter(v => {
+          return v.cat_id == 20
+        })
+        this.threeList = this.tableList.filter(v => {
+          return v.cat_id == 30
+        })
+        this.foreList = this.tableList.filter(v => {
+          return v.cat_id == 40
+        })
+        console.log(this.firstList)
+      })
     },
   },
 }
@@ -128,12 +208,14 @@ export default {
           margin-bottom: 20px;
           > div {
             width: 100%;
-            position: relative;
+            height: 400px;
             overflow: hidden;
             border-radius: 8px;
+            position: relative;
             &:hover {
               > div {
-                bottom: 0;
+                top: 50%;
+                bottom: 0px;
               }
             }
             > img {
@@ -142,29 +224,37 @@ export default {
             }
             > div {
               position: absolute;
-              bottom: -85px;
+              top: 345px;
               transition: 0.3s;
               width: 100%;
               // background-color: rgba(130, 185, 35, 0.9);
-              padding: 10px;
+              // padding: 10px;
               > h5 {
+                height: 60px;
                 color: white;
                 font-size: 20px;
                 font-weight: bold;
                 padding: 10px 10px;
+                // position: absolute;
+                // top: 0;
+                width: 100%;
               }
-              > ul {
+              > div {
                 width: 100%;
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-between;
-                > li {
+                color: white;
+
+                > a {
+                  display: block;
                   padding: 10px;
-                  > a {
-                    display: block;
-                    color: white;
-                    width: 160px;
-                  }
+                  color: white;
+                  width: 160px;
+                  // > a {
+                  //   color: white;
+                  //   width: 160px;
+                  // }
                 }
               }
             }
