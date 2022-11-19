@@ -5,12 +5,16 @@ import router from './router'
 
 import './assets/css/initialize.css'
 
+import STdentify from './components/Form/identify.vue'
+
 new Vue({
   router,
   render: h => h(App),
   // vue 初始化完成后的钩子
   beforeCreate() {
-    // 设置全局事件总线
-    Vue.prototype.$bus = this
+    // 验证
+    Vue.use(STdentify),
+      // 设置全局事件总线
+      (Vue.prototype.$bus = this)
   },
 }).$mount('#app')

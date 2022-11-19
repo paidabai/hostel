@@ -1,6 +1,5 @@
 <template>
- 
-  <div style="background-color: #f5f5f5 ;  padding: 80px;">
+  <div style="background-color: #f5f5f5; padding: 80px">
     <div class="main">
       <h1>请填写以下信息，查询您的订单信息</h1>
       <el-form ref="form" :model="form" label-width="180px">
@@ -15,11 +14,12 @@
         </el-form-item>
         <el-form-item label="请输入右侧图片验证码：">
           <el-input v-model="form" style="width: 370px"></el-input>
-          <img
-            src="/web-index-verify"
-            title="点击刷新"
-            style="margin: 0px 0 -10px -120px; cursor: pointer"
-          />
+          <div class="coderight" style="width: 112px" @click="refreshCode">
+            <SIdentify
+              :identifyCode="identifyCode"
+              @click="Refresh"
+            ></SIdentify>
+          </div>
         </el-form-item>
         <el-form-item label="请输入你收到的校验码：">
           <el-input v-model="form" style="width: 370px"></el-input>
@@ -33,12 +33,44 @@
           <el-button>下一步</el-button>
         </el-form-item>
       </el-form>
+
+      <!-- 验证码 -->
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import SIdentify from '../../components/Form/identify.vue' //
+export default {
+  components: {
+    SIdentify: SIdentify,
+  },
+  mounted() {
+    this.identifyCode = ''
+    this.makeCode(this.identifyCodes, 4)
+  },
+  methods: {
+    //...mapActions("modules/account", ["settoken", "setname"]),
+    jumpregister: function () {
+      this.$router.push({ path: '/register' })
+    },
+    //验证码abcdefghijklnmopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+    randomNum(min, max) {
+      return Math.floor(Math.random() * (max - min) + min)
+    },
+    refreshCode() {
+      this.identifyCode = ''
+      this.makeCode(this.identifyCodes, 4)
+    },
+    makeCode(o, l) {
+      for (let i = 0; i < l; i++) {
+        this.identifyCode +=
+          this.identifyCodes[this.randomNum(0, this.identifyCodes.length)]
+      }
+      console.log(this.identifyCode)
+    },
+  },
+}
 </script>
 
 <style lang="less" scoped>
@@ -46,7 +78,7 @@ export default {}
   width: 1080px;
   padding: 20px;
   margin: 0 auto;
-  
+
   background-color: white;
   border: 1px #e1e1e1 solid;
   border-radius: 8px;
@@ -67,20 +99,12 @@ export default {}
         flex-wrap: nowrap;
         justify-content: space-between;
         position: relative;
-        img {
-          position: absolute;
-          top: 8px;
-
-          display: inline-block;
-          width: 100px;
-          height: 30px;
-          line-height: 30px;
-          background-color: #f3fbfe;
-          text-align: center;
-          color: #fff;
-
-          font-size: 14px;
-          margin-left: 20px;
+        div {
+          div {
+            position: absolute;
+            top: 2px;
+            left: 250px;
+          }
         }
       }
     }
