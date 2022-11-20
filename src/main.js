@@ -5,7 +5,7 @@ import router from './router'
 
 import './assets/css/initialize.css'
 
-import STdentify from './components/Form/identify.vue'
+import SIdentify from './components/Form/identify.vue'
 
 new Vue({
   router,
@@ -13,7 +13,7 @@ new Vue({
   // vue 初始化完成后的钩子
   beforeCreate() {
     // 验证
-    Vue.use(STdentify),
+    Vue.component('s-identify',SIdentify),
       // 设置全局事件总线
       (Vue.prototype.$bus = this)
   },

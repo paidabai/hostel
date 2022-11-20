@@ -7,7 +7,7 @@
         :model="form"
         :rules="rules"
         class="form"
-        label-width="180px"
+        label-width="200px"
       >
         <el-form-item label="请选择验证身份方式：" prop="way">
           <el-select v-model="form.way" style="width: 370px">
@@ -24,10 +24,8 @@
             style="width: 370px"
           ></el-input>
           <div class="coderight" style="width: 112px" @click="refreshCode">
-            <SIdentify
-              :identifyCode="identifyCode"
-              @click="Refresh"
-            ></SIdentify>
+            <s-identify :identifyCode="identifyCode"></s-identify>
+            <!-- @click="Refresh" -->
           </div>
         </el-form-item>
         <el-form-item label="请输入你收到的校验码：" prop="Code_of_effect">
@@ -50,12 +48,15 @@
 </template>
 
 <script>
-import SIdentify from "../../components/Form/identify.vue"; //
+
 export default {
+  name: "codetest",
   data() {
     return {
+      identifyCodes: "1234567890",
+      identifyCode: "",
       form: {
-        way: '',
+        way: "",
         number: "",
         security_code: "",
         Code_of_effect: "",
@@ -77,9 +78,9 @@ export default {
       },
     };
   },
-  components: {
-    SIdentify: SIdentify,
-  },
+
+  
+
   mounted() {
     this.identifyCode = "";
     this.makeCode(this.identifyCodes, 4);
@@ -105,11 +106,6 @@ export default {
 
     //以下是验证码
 
-    //...mapActions("modules/account", ["settoken", "setname"]),
-    jumpregister: function () {
-      this.$router.push({ path: "/register" });
-    },
-    //验证码abcdefghijklnmopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
     randomNum(min, max) {
       return Math.floor(Math.random() * (max - min) + min);
     },
@@ -154,12 +150,10 @@ export default {
         flex-wrap: nowrap;
         justify-content: space-between;
         position: relative;
-        div {
-          div {
-            position: absolute;
-            top: 2px;
-            left: 250px;
-          }
+        .coderight {
+          position: absolute;
+          top: 2px;
+          left: 250px;
         }
       }
     }
