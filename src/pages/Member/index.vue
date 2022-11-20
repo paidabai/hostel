@@ -9,16 +9,28 @@
         class="form"
         label-width="200px"
       >
-        <el-form-item label="请选择验证身份方式：" prop="way">
+        <el-form-item
+          label="请选择验证身份方式："
+          prop="way"
+          style="user-select: none"
+        >
           <el-select v-model="form.way" style="width: 370px">
             <el-option label="手机号" value="number"></el-option>
             <el-option label="电子邮箱" value="Email"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="请输入你的邮箱/手机号：" prop="number">
+        <el-form-item
+          label="请输入你的邮箱/手机号："
+          prop="number"
+          style="user-select: none"
+        >
           <el-input v-model="form.number" style="width: 370px"></el-input>
         </el-form-item>
-        <el-form-item label="请输入右侧图片验证码：" prop="security_code">
+        <el-form-item
+          label="请输入右侧图片验证码："
+          prop="security_code"
+          style="user-select: none"
+        >
           <el-input
             v-model="form.security_code"
             style="width: 370px"
@@ -28,15 +40,25 @@
             <!-- @click="Refresh" -->
           </div>
         </el-form-item>
-        <el-form-item label="请输入你收到的校验码：" prop="Code_of_effect">
+        <el-form-item
+          label="请输入你收到的校验码："
+          prop="Code_of_effect"
+          style="user-select: none"
+        >
           <el-input
             v-model="form.Code_of_effect"
             style="width: 370px"
           ></el-input>
-          <a href="" @click="getFourNumber">获取验证码</a>
+          <a href="" @click="getFourNumber" style="user-select: none"
+            >获取验证码</a
+          >
         </el-form-item>
 
-        <el-form-item label="请输入你的订单编号：" prop="order_number">
+        <el-form-item
+          label="请输入你的订单编号："
+          prop="order_number"
+          style="user-select: none"
+        >
           <el-input v-model="form.order_number" style="width: 370px"></el-input>
         </el-form-item>
         <el-form-item>
@@ -48,7 +70,6 @@
 </template>
 
 <script>
-
 export default {
   name: "codetest",
   data() {
@@ -78,8 +99,6 @@ export default {
       },
     };
   },
-
-  
 
   mounted() {
     this.identifyCode = "";
@@ -144,6 +163,7 @@ export default {
   }
   form {
     margin-top: 30px;
+
     > div:nth-child(3) {
       > .el-form-item__content {
         display: flex;
