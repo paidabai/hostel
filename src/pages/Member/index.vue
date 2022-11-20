@@ -42,7 +42,7 @@
           <el-input v-model="form.order_number" style="width: 370px"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button @click="onsubmit()">下一步</el-button>
+          <el-button @click="onsubmit">下一步</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -55,7 +55,7 @@ export default {
   data() {
     return {
       form: {
-        way: number,
+        way: '',
         number: "",
         security_code: "",
         Code_of_effect: "",
@@ -88,7 +88,20 @@ export default {
     // 获取验证码
     getFourNumber() {},
     // 提交按钮   下一步
-    onsubmit() {},
+    onsubmit() {
+      console.log("用户点击了提交按钮", this.form);
+      // 可以获取 ref='form'的组件对象
+      let form = this.$refs["form"];
+      console.log(form);
+      //validate方法由于验证整个表单
+      form.validate((valide) => {
+        if (valid) {
+          console.log("用户点击了提交按钮验证成功", this.form);
+        } else {
+          console.log("验证失败");
+        }
+      });
+    },
 
     //以下是验证码
 
