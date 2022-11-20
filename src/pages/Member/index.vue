@@ -2,18 +2,27 @@
   <div style="background-color: #f5f5f5; padding: 80px">
     <div class="main">
       <h1>请填写以下信息，查询您的订单信息</h1>
-      <el-form ref="form" :model="form" label-width="180px">
-        <el-form-item label="请选择验证身份方式：">
-          <el-select v-model="form" style="width: 370px">
+      <el-form
+        ref="form"
+        :model="form"
+        :rules="rules"
+        class="form"
+        label-width="180px"
+      >
+        <el-form-item label="请选择验证身份方式：" prop="way">
+          <el-select v-model="form.way" style="width: 370px">
             <el-option label="手机号" value="number"></el-option>
             <el-option label="电子邮箱" value="Email"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="请输入你的邮箱/手机号：">
-          <el-input v-model="form" style="width: 370px"></el-input>
+        <el-form-item label="请输入你的邮箱/手机号：" prop="number">
+          <el-input v-model="form.number" style="width: 370px"></el-input>
         </el-form-item>
-        <el-form-item label="请输入右侧图片验证码：">
-          <el-input v-model="form" style="width: 370px"></el-input>
+        <el-form-item label="请输入右侧图片验证码：" prop="security_code">
+          <el-input
+            v-model="form.security_code"
+            style="width: 370px"
+          ></el-input>
           <div class="coderight" style="width: 112px" @click="refreshCode">
             <SIdentify
               :identifyCode="identifyCode"
@@ -21,56 +30,89 @@
             ></SIdentify>
           </div>
         </el-form-item>
-        <el-form-item label="请输入你收到的校验码：">
-          <el-input v-model="form" style="width: 370px"></el-input>
-          <a href="">获取验证码</a>
+        <el-form-item label="请输入你收到的校验码：" prop="Code_of_effect">
+          <el-input
+            v-model="form.Code_of_effect"
+            style="width: 370px"
+          ></el-input>
+          <a href="" @click="getFourNumber">获取验证码</a>
         </el-form-item>
 
-        <el-form-item label="请输入你的订单编号：">
-          <el-input v-model="form" style="width: 370px"></el-input>
+        <el-form-item label="请输入你的订单编号：" prop="order_number">
+          <el-input v-model="form.order_number" style="width: 370px"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button>下一步</el-button>
+          <el-button @click="onsubmit()">下一步</el-button>
         </el-form-item>
       </el-form>
-
-      <!-- 验证码 -->
     </div>
   </div>
 </template>
 
 <script>
-import SIdentify from '../../components/Form/identify.vue' //
+import SIdentify from "../../components/Form/identify.vue"; //
 export default {
+  data() {
+    return {
+      form: {
+        way: number,
+        number: "",
+        security_code: "",
+        Code_of_effect: "",
+        order_number: "",
+      },
+      rules: {
+        number: [
+          { required: true, message: "请输入你的邮箱/手机号", trigger: "blur" },
+        ],
+        security_code: [
+          { required: true, message: "请输入右侧图片验证码", trigger: "blur" },
+        ],
+        Code_of_effect: [
+          { required: true, message: "请输入你收到的校验码", trigger: "blur" },
+        ],
+        order_number: [
+          { required: true, message: "请输入你的订单编号", trigger: "blur" },
+        ],
+      },
+    };
+  },
   components: {
     SIdentify: SIdentify,
   },
   mounted() {
-    this.identifyCode = ''
-    this.makeCode(this.identifyCodes, 4)
+    this.identifyCode = "";
+    this.makeCode(this.identifyCodes, 4);
   },
   methods: {
+    // 获取验证码
+    getFourNumber() {},
+    // 提交按钮   下一步
+    onsubmit() {},
+
+    //以下是验证码
+
     //...mapActions("modules/account", ["settoken", "setname"]),
     jumpregister: function () {
-      this.$router.push({ path: '/register' })
+      this.$router.push({ path: "/register" });
     },
     //验证码abcdefghijklnmopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
     randomNum(min, max) {
-      return Math.floor(Math.random() * (max - min) + min)
+      return Math.floor(Math.random() * (max - min) + min);
     },
     refreshCode() {
-      this.identifyCode = ''
-      this.makeCode(this.identifyCodes, 4)
+      this.identifyCode = "";
+      this.makeCode(this.identifyCodes, 4);
     },
     makeCode(o, l) {
       for (let i = 0; i < l; i++) {
         this.identifyCode +=
-          this.identifyCodes[this.randomNum(0, this.identifyCodes.length)]
+          this.identifyCodes[this.randomNum(0, this.identifyCodes.length)];
       }
-      console.log(this.identifyCode)
+      console.log(this.identifyCode);
     },
   },
-}
+};
 </script>
 
 <style lang="less" scoped>
