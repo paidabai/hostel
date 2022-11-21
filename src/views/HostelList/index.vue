@@ -21,7 +21,7 @@
           </el-table-column>
         </el-table>
       </div>
-      <HostelCard class="card"/>
+      <HostelCard class="card" />
     </div>
   </div>
 </template>
@@ -67,28 +67,13 @@ export default {
 </script>
 
 <style scoped lang="less">
-<<<<<<< HEAD:src/views/HostelList/index.vue
-  .main {
-    width: 1080px;
-    margin: 0 auto;
-    position: relative;
-    top: -70px;
-    display: flex;
-    justify-content: space-between;
-    .table {
-      width: 810px;
-      padding: 25px 50px 25px 50px;
-      background-color: #fff;
-      .table-title {
-        font-size: 30px;
-        margin-bottom: 30px;
-      }
-=======
 .main {
   width: 1080px;
   margin: 0 auto;
   position: relative;
   top: -70px;
+  display: flex;
+  justify-content: space-between;
   .table {
     width: 810px;
     padding: 25px 50px 25px 50px;
@@ -96,11 +81,10 @@ export default {
     .table-title {
       font-size: 30px;
       margin-bottom: 30px;
->>>>>>> cooperation:src/pages/HostelList/index.vue
     }
-    .card {
-      margin-top: 70px;
-    }
+  }
+  .card {
+    margin-top: 70px;
   }
 }
 </style>
