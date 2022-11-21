@@ -3,9 +3,9 @@
     <div class="member-one">
       <h1>YHA®会员卡，带您享尽全球青年旅舍®住宿优惠</h1>
       <div class="member-btn">
-        <a href="">申请会员卡</a>
-        <a href="">会员续卡</a>
-        <a href="">会员优惠</a>
+        <a  @click="$router.push(`/memberCardType`)">申请会员卡</a>
+        <a  @click="$router.push(`/membershipRenewal`)">会员续卡</a>
+        <a  @click="$router.push(`/memberBenefits`)">会员优惠</a>
       </div>
     </div>
     <div class="member-two">
@@ -48,33 +48,23 @@
           <a href="">会员卡辨伪</a>
           <a href="">代理商加盟</a>
         </div>
-        <a href="">马上申请</a>
+        <a  @click="$router.push(`/memberCardType`)">马上申请</a>
       </div>
       <div class="container-bottom">
         <h2>如果您的会员已过期，可申请续卡</h2>
-        <a href="">马上续卡</a>
+        <a  @click="$router.push(`/membershipRenewal`)">马上续卡</a>
       </div>
     </div>
     <!-- 第四楼 -->
     <div class="member-four">
       <h2>选择会员卡类型</h2>
       <div class="member-list">
-        <dl>
-          <dt><img src="../../assets/img/member4.1.jpg" alt="" /></dt>
+        <dl v-for="item in tableData" :key="item.id">
+          <dt><img :src="item.img" alt="" /></dt>
           <dd>
-            <h3>国际青年旅舍会员卡</h3>
-            <p>
-              全球通用，可以享受国内外国际青年旅舍住宿价格的优惠，同时在世界各地享有逾三千项的优惠。
-            </p>
-            <button>￥50</button>
-          </dd>
-        </dl>
-        <dl>
-          <dt><img src="../../assets/img/member4.2.jpg" alt="" /></dt>
-          <dd>
-            <h3>国际青年旅舍终身会员卡</h3>
-            <p>全球通用，终身有效，适合身为青年旅舍忠实粉丝的你。</p>
-            <button>￥500</button>
+            <h3>{{item.title}}</h3>
+            <p>{{item.function_desc}}</p>
+            <button>￥{{item.price}}</button>
           </dd>
         </dl>
       </div>
@@ -83,15 +73,39 @@
     <div class="member-five">
       <h2>如果您的会员已过期，可申请续卡</h2>
       <div class="btns">
-        <a href="">会员卡号查询</a>
-        <a href="">寄送信息查询</a>
+        <a @click="$router.push(`/memberInfoquery`)">会员卡号查询</a>
+        <a @click="$router.push(`/memberCardquery`)">寄送信息查询</a>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { reqMembercardType } from "../../api";
+export default {
+  name: "MembercardType",
+  data() {
+    return {
+      tableData: [], 
+    };
+  },
+  // 将要挂载时
+  mounted() {
+    this.getMembercardType();
+  },
+  methods: {
+    getMembercardType() {
+      reqMembercardType().then((value) => {
+        console.log(value);
+        const result = value.data;
+        if (result.status === 200) {
+          this.tableData = result.data;
+          console.log(this.tableData);
+        }
+      });
+    },
+  },
+};
 </script>
 
 <style lang="less" scoped>
@@ -105,11 +119,12 @@ a:hover,button:hover{
 }
 // 会员申请
 .member-one {
+  border-top: 2px solid #ddd;
   height: 700px;
-  width: 1920px;
+  min-width: 1080px;
   margin: auto;
-  background: url("../../assets/img/membership-banner.jpg") no-repeat;
-  background-size: cover;
+  background: url("../../assets/img/membership-banner.jpg") no-repeat center;
+  // background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -183,10 +198,9 @@ a:hover,button:hover{
 // 第三楼
 .member-three {
   height: 1050px;
-  width: 1960px;
+  min-width: 1080px;
   margin: auto;
-  background: url("../../assets/img/member3.jpg") no-repeat;
-  background-size: cover;
+  background: url("../../assets/img/member3.jpg") no-repeat center;
   display: flex;
   flex-direction: column;
   align-items: center;
