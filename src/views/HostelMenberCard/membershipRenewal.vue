@@ -9,7 +9,7 @@ http://www.yhachina.com/images/membership/apply-processs.jpg"
       <h2>填写续卡会员信息</h2>
       <p>
         请输入希望续卡的会员信息，并确认信息正确，您可一次续多张不同类型的会员卡。如果会员卡号码与证件号码不匹配，需要联系修改<br />
-        如果您忘记了会员卡号，请点击<a @click="$router.push(`/memberInfoquery`)"><em >会员卡号自助查询</em></a>
+        如果您忘记了会员卡号，请点击<a href=""><em>会员卡号自助查询</em></a>
       </p>
       <el-form class="form" label-width="auto">
         <el-form-item label="会员卡号码：" style="width:370px">
