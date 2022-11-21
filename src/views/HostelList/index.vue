@@ -27,21 +27,15 @@
 </template>
 
 <script>
-<<<<<<< HEAD:src/views/HostelList/index.vue
-import {reqHostelList} from "../../api";
-import HostelCard from "../../components/HostelCard/index.vue";
-
-export default {
-  name: "HostelList",
-  components: {
-    HostelCard
-  },
-=======
 import { reqHostelList } from '../../api'
+import HostelCard from '../../components/HostelCard/index.vue'
 
 export default {
   name: 'HostelList',
->>>>>>> cooperation:src/pages/HostelList/index.vue
+  components: {
+    HostelCard,
+  },
+
   data() {
     return {
       tableData: [],
