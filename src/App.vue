@@ -7,27 +7,33 @@
       <router-view />
     </el-main>
     <el-footer height="340px">
-      <Footer/>
+      <Footer />
     </el-footer>
   </div>
 </template>
 
 <script>
-import Header from "./components/Header/index.vue";
-import Footer from "./components/Footer/index.vue";
+import Header from './components/Header/index.vue'
+import Footer from './components/Footer/index.vue'
 
 export default {
-  name: "App",
+  name: 'App',
   // 注册组件
-  components:{
+  components: {
     Header,
-    Footer
+    Footer,
   },
 }
 </script>
 
 <style scoped>
-  .el-header, .el-main, .el-footer{
-    padding: 0;
-  }
+.el-header,
+.el-main,
+.el-footer {
+  padding: 0;
+}
+* {
+  padding: 0;
+  margin: 0;
+}
 </style>
