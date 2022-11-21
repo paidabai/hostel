@@ -2,7 +2,8 @@
   <div class="type">
     <img src="../../assets/img/exhibition-banner.jpg" alt="">
     <div>
-      <div class="body" v-for="item in tableData" :key="item.id">
+     <div>
+       <div class="body" v-for="item in tableData" :key="item.id">
         <h2>{{ item.name }}</h2>
         <img :src="item.img" alt="" />
         <h3>{{ item.title }}</h3>
@@ -17,6 +18,22 @@
           </div>
         </div>
       </div>
+     </div>
+      <!-- <div class="body" >
+        <h2>{{ tableData[0].name }}</h2>
+        <img :src="tableData[0].img" alt="" />
+        <h3>{{ tableData[0].title }}</h3>
+        <span>￥{{ tableData[0].price }}</span>
+        <p>{{ tableData[0].card_desc }}</p>
+        <div>
+          <h3>成为YHA青年旅舍会员的好处：</h3>
+          <p v-html="tableData[0].member_goods"></p>
+          <div>
+            <h3>会员卡费用及有效期</h3>
+            <p v-html="tableData[0].card_limit"></p>
+          </div>
+        </div>
+      </div> -->
       <div class="side">
         <HostelCard></HostelCard>
       </div>
@@ -45,7 +62,7 @@ export default {
     getMembercardType() {
      let id=this.$route.query.id
      console.log('id',id);
-      reqMembercardType({id}).then((value) => {
+      reqMembercardType().then((value) => {
         console.log(value);
         const result = value.data;
         if (result.status === 200) {
@@ -74,6 +91,7 @@ export default {
         padding: 30px 50px;
         background-color: #fff;
         margin-right: 20px;
+    border-top: 1px solid #888;
         >h2{
             font-size: 30px;
             margin-bottom: 80px;
