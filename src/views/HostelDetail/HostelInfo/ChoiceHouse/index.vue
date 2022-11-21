@@ -16,62 +16,77 @@
       </el-date-picker>
       <span class="tips">(最多可预定30天)</span>
     </div>
-    <el-table
-        :data="tableData"
-        :span-method="objectSpanMethod"
-        border
-        style="width: 710px; margin-top: 20px">
-      <el-table-column
-          label="房型"
-          width="270">
-        <template slot-scope="scope">
-          <div class="houseType">
-            <img class="houseImg" :src="`${BASE_URL}/hostelImg/${scope.row.houseImg}`" alt="">
-            <p>{{scope.row.houseType}} <span>{{scope.row.housebed ? '-床位' : '-独立房间'}}</span></p>
-          </div>
-        </template>>
-      </el-table-column>
-      <el-table-column
-          label="最多人数"
-          width="70">
-        <template slot-scope="scope">
-          <img :src="scope.row.peoles === '1' ? '../../../../src/assets/img/1D.gif' : '../../../../src/assets/img/2D.gif'" alt="">
-        </template>>
-      </el-table-column>
-      <el-table-column
-          :label="choseDay + '天的房价 （元）'"
-          width="150">
-        <template slot-scope="scope">
-          <div class="house-price">
-            <span class="price">共{{scope.row.housePrice ? scope.row.housePrice * choseDay : scope.row.houseVipPrice * choseDay}}元</span>
-            <span class="price-type">{{scope.row.housePrice ? '非会员价' : '会员价'}}</span>
-            <p class="tips-title">部分预付 | 不可退款 | 2022会员</p>
-          </div>
-        </template>
-      </el-table-column>
-      <el-table-column
-          label="数量预订"
-          width="210">
-        <template slot-scope="scope">
-        <el-select v-model="scope.row.choseamount" placeholder="请选择">
-          <el-option v-for="item in scope.row.houseQuantity"
-                     :key="item"
-                     :label="item"
-                     :value="item">
-          </el-option>
-        </el-select>
-        </template>>
-      </el-table-column>
-    </el-table>
+    <div class="table-bottom">
+      <el-table
+          :data="tableData"
+          :span-method="objectSpanMethod"
+          border
+          style="width: 710px; margin-top: 20px">
+        <el-table-column
+            label="房型"
+            width="270">
+          <template slot-scope="scope">
+            <div class="houseType">
+              <img class="houseImg" :src="`${BASE_URL}/hostelImg/${scope.row.houseImg}`" alt="">
+              <p>{{scope.row.houseType}} <span>{{scope.row.housebed ? '-床位' : '-独立房间'}}</span></p>
+            </div>
+          </template>
+        </el-table-column>
+        <el-table-column
+            label="最多人数"
+            width="70">
+          <template slot-scope="scope">
+            <img :src="scope.row.peoles === '1' ? '../../../../src/assets/img/1D.gif' : '../../../../src/assets/img/2D.gif'" alt="">
+          </template>>
+        </el-table-column>
+        <el-table-column
+            :label="choseDay + '天的房价 （元）'"
+            width="150">
+          <template slot-scope="scope">
+            <div class="house-price">
+              <span class="price">共{{scope.row.housePrice ? scope.row.housePrice * choseDay : scope.row.houseVipPrice * choseDay}}元</span>
+              <span class="price-type">{{scope.row.housePrice ? '非会员价' : '会员价'}}</span>
+              <p class="tips-title">部分预付 | 不可退款 | 2022会员</p>
+            </div>
+          </template>
+        </el-table-column>
+        <el-table-column
+            label="数量预订"
+            width="210">
+          <template slot-scope="scope">
+          <el-select
+              v-model="scope.row.choseamount"
+              placeholder="请选择"
+              :change="choseHostel(scope.row)"
+          >
+            <el-option v-for="item in scope.row.houseQuantity"
+                       :key="item"
+                       :label="item"
+                       :value="item">
+            </el-option>
+          </el-select>
+          </template>
+        </el-table-column>
+      </el-table>
+      <ChoiceTotal
+          :hostelName = "hostelName"
+          :choseDay = "choseDay"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import getDistanceDays from '../../../../utils/calculationDate.js'
 import {BASE_URL} from "../../../../utils/constants.js";
+import ChoiceTotal from "./ChoiceTotal/index.vue";
 
 export default {
   name: "ChoiceHouse",
+  props: ['hostelName'],
+  components: {
+    ChoiceTotal,
+  },
   mounted() {
     this.$bus.$on('getHostelType', value => {
       this.tableData = value
@@ -80,10 +95,13 @@ export default {
   data() {
     return {
       BASE_URL,
+      // 日期组件，选择的日期
       valueDate: '1',
+      // 计算后的天数
       choseDay: 1,
-      value1: null,
+      // 表格数据
       tableData: [],
+      // 限制日期组件的选择范围
       pickerOptions: {
         disabledDate(time) {
           return time.getTime() > Date.now() + 2592000000 + 86400000 || time.getTime() < Date.now() - 8.64e7;
@@ -92,10 +110,12 @@ export default {
     }
   },
   methods: {
+    // 计算选择的时间
     countHousePrice(){
       const day = getDistanceDays(this.valueDate[0],this.valueDate[1])
       this.choseDay = day-1
     },
+    // 合并列
     objectSpanMethod({ row, column, rowIndex, columnIndex }) {
       if (columnIndex === 0) {
         if (rowIndex % 2 === 0) {
@@ -111,6 +131,12 @@ export default {
         }
       }
     },
+    choseHostel(value) {
+      if (value.choseamount) {
+        const item = {id: value.h_id, houseType: value.houseType, choseamount: value.choseamount, housePrice: value.housePrice, houseVipPrice: value.houseVipPrice, choseDay: this.choseDay}
+        this.$bus.$emit('getChoseHostelTypeData', item)
+      }
+    }
   },
 }
 </script>
@@ -136,43 +162,46 @@ export default {
         font-size: 14px;
       }
     }
-    .houseType {
+    .table-bottom {
       display: flex;
-      .houseImg {
-        width: 120px;
-        height: 90px;
-        border-radius: 4px;
-      }
-      p {
+      .houseType {
         display: flex;
-        flex-direction: column;
-        margin-left: 10px;
-        font-size: 16px;
-        span {
-          font-size: 14px;
+        .houseImg {
+          width: 120px;
+          height: 90px;
+          border-radius: 4px;
+        }
+        p {
+          display: flex;
+          flex-direction: column;
+          margin-left: 10px;
+          font-size: 16px;
+          span {
+            font-size: 14px;
+          }
         }
       }
-    }
-    .house-price {
-      .price {
-        color: #f4971c;
-        font-size: 14px;
-        border-bottom: 1px dashed;
-      }
-      .price-type {
-        margin-left: 6px;
-        display: inline-block;
-        font-size: 12px;
-        color: #fff;
-        padding: 0 5px;
-        font-weight: normal;
-        background-color: #f4971c;
-      }
-      .tips-title {
-        margin-top: 10px;
-        font-size: 12px;
-        font-weight: normal;
-        color: #999;
+      .house-price {
+        .price {
+          color: #f4971c;
+          font-size: 14px;
+          border-bottom: 1px dashed;
+        }
+        .price-type {
+          margin-left: 6px;
+          display: inline-block;
+          font-size: 12px;
+          color: #fff;
+          padding: 0 5px;
+          font-weight: normal;
+          background-color: #f4971c;
+        }
+        .tips-title {
+          margin-top: 10px;
+          font-size: 12px;
+          font-weight: normal;
+          color: #999;
+        }
       }
     }
   }

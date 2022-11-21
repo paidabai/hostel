@@ -9,7 +9,7 @@
         <HostelSurvey :hostelName="hostelName"/>
       </el-tab-pane>
       <el-tab-pane label="房型及价格" name="second">
-        <ChoiceHouse />
+        <ChoiceHouse :hostelName="hostelName"/>
       </el-tab-pane>
       <el-tab-pane label="地图" name="third">
         <div class="map">

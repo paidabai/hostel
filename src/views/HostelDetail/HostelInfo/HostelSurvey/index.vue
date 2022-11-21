@@ -5,8 +5,8 @@
         <img :src="hostelDetailData[0]?.hostelImg[0]" alt="">
       </div>
       <div class="introduce">
-        <h3>{{hostelName}}</h3>
-        <p>{{hostelDetailData[0]?.survey}}</p>
+        <h3>{{ hostelName }}</h3>
+        <p>{{ hostelDetailData[0]?.survey }}</p>
       </div>
       <div class="service">
         <el-card class="box-card">
@@ -14,7 +14,7 @@
             <span>营业时间</span>
           </div>
           <span>
-            前台 :<strong>{{hostelDetailData[0]?.businessHours[0]}} 到 {{hostelDetailData[0]?.businessHours[1]}}</strong>
+            前台 :<strong>{{ hostelDetailData[0]?.businessHours[0] }} 到 {{ hostelDetailData[0]?.businessHours[1] }}</strong>
             <br>
             入住时间:<strong>{{ hostelDetailData[0]?.businessHours[0] }}</strong>后
             <br>
