@@ -39,7 +39,7 @@ const router = new VueRouter({
       component:latestNews,
     },
     {
-      path: '/newsDetails',
+      path: '/newsDetails/:id',
       name: 'newsDetails',
       component:()=>import('../views/LatestNews/newsdetails.vue'),
     },

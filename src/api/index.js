@@ -13,3 +13,6 @@ export const reqLatestNews = () => ajax(`${BASE_URL}/latestNews`,{})
 
 // 最新资讯的分类
 export const reqLatestNewsType = () => ajax(`${BASE_URL}/latestnewsType`,{})
+
+// 根据Id查询每条信息
+export const reqNewsDetails=(id) => ajax(`${BASE_URL}/newsDetails/${id}`,{})

@@ -8,9 +8,10 @@
         <h2>最新资讯</h2>
         <div class="nav-list">
           <button
-            v-for="item in latesnewsTypes"
-            :key="item.id"
-            @click="submit(item.id)"
+            :class="{ active: ty == index }"
+            v-for="(item, index) in latesnewsTypes"
+            :key="index"
+            @click="submit(item.id, index)"
           >
             {{ item.name }}
           </button>
@@ -18,18 +19,15 @@
       </div>
       <div class="main">
         <div class="left">
-          <div
-            class="item"
-            v-for="item in eachNews"
-            :key="item.id"
-            @click="$router.push(`/newsDetails?id=${item.id}`)"
-          >
-            <a href="">
-              <img :src="item.cover" alt="" />
-            </a>
-            <a href="">
-              <h3>{{ item.title }}</h3>
-            </a>
+          <div class="item" v-for="item in eachNews" :key="item.id">
+            <router-link :to="{ name: 'newsDetails', params: { id: item.id } }">
+              <a href="">
+                <img :src="item.cover" alt="" />
+              </a>
+              <a href="">
+                <h3>{{ item.title }}</h3>
+              </a>
+            </router-link>
           </div>
         </div>
 
@@ -55,6 +53,7 @@ export default {
       latestNews: [], //储存最新资讯全部信息
       latesnewsTypes: [], //储存最新资讯5个分类名称的信息
       eachNews: [], ////储存最新资讯5个分类各自的信息
+      ty: null,
     };
   },
 
@@ -64,16 +63,17 @@ export default {
     this.getLatestNewsType();
   },
   methods: {
-    submit(id) {
-      console.log(id);
+    submit(id, index) {
+      // console.log(id); //查看参数是否传递成功
       let x = this.latestNews.filter(v => v.type == id);
-      console.log(x); //查看是否存入成功
+      console.log(x); //查看是否筛选成功
       this.eachNews = x; //筛选后的全部信息 重新存入 eachNews数组
+      this.ty = index;
     },
 
     getLatestNews() {
       reqLatestNews().then(res => {
-        console.log(res);
+        // console.log(res); 查看是否请求成功
         this.latestNews = res.data.data; //最新资讯全部信息 存入latestNews数组
         this.eachNews = res.data.data; //最新资讯全部信息 备份存入eachNews数组，主页面初次加载完成时用
         console.log(this.latestNews); //查看是否存入成功
@@ -82,7 +82,7 @@ export default {
 
     getLatestNewsType() {
       reqLatestNewsType().then(res => {
-        console.log(res);
+        // console.log(res); 查看是否请求成功
         this.latesnewsTypes = res.data.data; //最新资讯5个分类名称的信息 存入latesnewsType数组
         console.log(this.latesnewsTypes); //查看是否存入成功
       });
@@ -131,6 +131,9 @@ export default {
         border: none;
       }
       > button:hover {
+        background-color: #f7941c;
+      }
+      > .active {
         background-color: #f7941c;
       }
     }
