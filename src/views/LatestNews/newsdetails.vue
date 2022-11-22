@@ -9,25 +9,30 @@
           <h2>{{ item.title }}</h2>
           <span>{{ item.time }}</span>
           <p>{{ item.detail_f }}</p>
-          <img :src="item.cover" width="710px" height="470px" alt="" />
+          <video
+            v-show="item.vd"
+            :src="item.vd"
+            controls
+            width="710px"
+            height="470px"
+            :poster="item.pt"
+          ></video>
+          <img
+            v-show="item.cover"
+            :src="item.cover"
+            width="710px"
+            height="470px"
+            alt=""
+          />
           <div class="second">{{ item.detail_s }}</div>
         </div>
       </div>
       <div class="right">
-        <!-- <el-card class="box-card">
-          <div
-            v-for="(item, index) in latesnewsTypes"
-            :key="index"
-            class="text item"
-          >
-            {{ item.name }}
-          </div>
-        </el-card> -->
         <ul>
           <li
-            v-for="(item, index) in latesnewsTypes"
-            :key="index"
-            :class="{ active: ty == index }"
+            v-for="item in latesnewsTypes"
+            :key="item.id"
+            :class="{ active: ty == item.type }"
           >
             {{ item.name }}
           </li>
@@ -46,7 +51,7 @@ export default {
     return {
       details: [], //存放请求回的整条信息
       latesnewsTypes: [], //储存最新资讯5个分类名称的信息
-      ty: 0,
+      ty: null,
     };
   },
 
@@ -57,6 +62,7 @@ export default {
       // console.log(res); 查看是否请求成功
       this.details = res.data.data; //将请求回的整条信息存入details数组
       console.log(this.details);
+      this.ty = res.data.data[0].type;
     });
 
     reqLatestNewsType().then(res => {
@@ -68,7 +74,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style scoped lang="less">
 .text {
   font-size: 14px;
 }
@@ -148,15 +154,20 @@ export default {
 
   > .right {
     width: 240px;
+    > .box-card {
+      > .active {
+        background-color: #87c524;
+      }
+    }
     > ul {
       background-color: #fff;
       margin-bottom: 20px;
       font-size: 14px;
       > li {
         padding: 20px 20px;
-        > .active {
-          background-color: #87c524;
-        }
+      }
+      > .active {
+        background-color: #87c524;
       }
     }
   }
