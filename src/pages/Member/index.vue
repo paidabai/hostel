@@ -86,6 +86,11 @@ export default {
       rules: {
         number: [
           { required: true, message: "请输入你的邮箱/手机号", trigger: "blur" },
+          {
+            pattern: /^1[3-9]\d{9}$/ ,
+            message: "请填写正确的手机号码",
+            trigger: "blur",
+          },
         ],
         security_code: [
           { required: true, message: "请输入右侧图片验证码", trigger: "blur" },
