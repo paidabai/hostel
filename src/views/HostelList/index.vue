@@ -83,7 +83,6 @@ export default {
       reqHostelList().then((value) => {
         const result = value.data
         if (result.status === 200) {
-          this.loading = false
           this.tableData = result.data
         }
       })

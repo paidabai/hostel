@@ -35,6 +35,8 @@ Vue.directive('ripple', Ripple);
 
 import './assets/css/initialize.css'
 
+import SIdentify from './components/Form/identify.vue'
+
 new Vue({
   router,
   store,
