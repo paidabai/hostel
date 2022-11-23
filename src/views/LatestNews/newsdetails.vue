@@ -11,7 +11,7 @@
           <p>{{ item.detail_f }}</p>
           <video
             v-show="item.vd"
-            :src="item.vd"
+            :src="BASE_URL + item.vd"
             controls
             width="710px"
             height="470px"
@@ -46,9 +46,12 @@
 <script>
 import { reqNewsDetails } from "../../api";
 import { reqLatestNewsType } from "../../api";
+import { BASE_URL } from "../../utils/constants";
+
 export default {
   data() {
     return {
+      BASE_URL,
       details: [], //存放请求回的整条信息
       latesnewsTypes: [], //储存最新资讯5个分类名称的信息
       ty: null,
