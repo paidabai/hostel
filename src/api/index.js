@@ -1,5 +1,6 @@
 import ajax from './axios'
 import {BASE_URL, GAODE_WEBKEY, LatitudeAndLongitude_URL} from "../utils/constants";
+import jsonp from 'jsonp'
 // 默认GET，POST为ajax(`${BASE_URL}/hostelList`,{}，’POST‘)
 
 // 获取导航栏数据
@@ -22,3 +23,9 @@ export const reqHostelServices = (hostelId) => ajax(`${BASE_URL}/hostelServices`
 
 // 高德逆地理编码获取旅舍的经纬度
 export const reqLatitudeAndLongitude = (address) => ajax(`${LatitudeAndLongitude_URL}/api?address=${address}&key=${GAODE_WEBKEY}`)
+
+// 支付
+export const reqPay = (orderPay) => ajax('http://localhost:7777/api/pay', orderPay)
+
+// 查询订单状态
+export const reqOrderStatus = (out_trade_no) => ajax('http://localhost:7777/api/queryOrder', {out_trade_no}, 'POST')

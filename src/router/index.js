@@ -7,6 +7,7 @@ import ContactHeadquarters from '../views/ContactHeadquarters/index.vue'
 import hostelPublicGoodList from "../views/HostelPublicGood/index.vue"
 import hostelMenberCard from "../views/HostelMenberCard/index.vue"
 import HostelDetail from "../views/HostelDetail/index.vue";
+import OrderInfo from "../views/OrderInfo/index.vue";
 
 Vue.use(VueRouter)
 
@@ -55,6 +56,11 @@ const router = new VueRouter({
           hostelName
         }
       }
+    },
+    {
+      path: '/orderInfo',
+      name: 'OrderInfo',
+      component: OrderInfo
     }
   ]
 })

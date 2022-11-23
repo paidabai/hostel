@@ -58,12 +58,20 @@
         <p>合计: <span class="total-number">{{total}}元</span></p>
         <p>你现在需要支付: <span>{{payment}}元</span></p>
         <p>到店支付余额: <span>{{arrivalPrice}}元</span></p>
+        <button
+            class="payment"
+            v-show="choseHostelTypeData.length"
+            @click="getPay"
+        >支付</button>
       </div>
     </el-card>
   </div>
 </template>
 
 <script>
+import {reqPay} from "../../../../../api";
+import { customAlphabet } from 'nanoid'
+
 export default {
   name: "ChoiceTotal",
   props: ['hostelName', 'choseDay'],
@@ -98,21 +106,36 @@ export default {
     }
   },
   methods: {
+    // 获取每行的信息
     getSummaries(param) {
       const sums = []
       let total = 0
       const {data} = param
-      console.log(data)
       data.forEach(item => {
         if (item.housePrice) {
           total += item.choseDay * item.choseamount * item.housePrice
-          console.log(item.choseDay * item.choseamount * item.housePrice)
         }else {
           total += item.choseDay * item.choseamount * item.houseVipPrice
         }
       })
       this.total = total
       return sums
+    },
+    // 获取订单支付页面
+    getPay() {
+      const nanoid = customAlphabet('1234567890', 16)
+      const orderPay = {
+        orderId: nanoid(), // 随机生成的订单号
+        hostelName: this.hostelName, // 旅舍名
+        money: this.payment, // 需要支付的钱
+        url: 'http://localhost:5173/orderInfo' // 支付
+      }
+      reqPay(orderPay).then(value => {
+        const result = value.data
+        if (result.status === 200) {
+          location.href = result.url
+        }
+      })
     }
   }
 }
@@ -150,6 +173,15 @@ export default {
         font-size: 30px;
         font-weight: bold;
         color: #f7941c;
+      }
+      .payment {
+        width: 80px;
+        height: 40px;
+        background-color: #f7941c;
+        border: 1px solid #F7941C;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 18px;
       }
     }
   }
