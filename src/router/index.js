@@ -2,10 +2,14 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 // 引入路由组件(不能忽略.vue后缀)
+<<<<<<< HEAD
 import hostelList from '../views/HostelList/index.vue'
 import ContactHeadquarters from '../views/ContactHeadquarters/index.vue'
 import hostelPublicGoodList from '../views/HostelPublicGood/index.vue'
 import hostelMenberCard from '../views/HostelMenberCard/index.vue'
+=======
+import latestNews from '../views/LatestNews/index.vue'
+>>>>>>> latest-news
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -89,6 +93,18 @@ const router = new VueRouter({
       name:'memberCardquery',
       component:()=>import('../views/HostelMenberCard/memberCardquery.vue')
     }, 
+
+    {
+      path: '/latestNews',
+      name: 'latestNews',
+      component:latestNews,
+    },
+    {
+      path: '/newsDetails/:id',
+      name: 'newsDetails',
+      component:()=>import('../views/LatestNews/newsdetails.vue'),
+    },
+   
   ]
 
 })

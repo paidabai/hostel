@@ -6,7 +6,7 @@
     <div class="main">
       <div class="table">
         <h2 class="table-title">旅舍一览表</h2>
-        <el-table border :data="tableData" stripe style="width: 100%">
+        <el-table :data="tableData" stripe style="width: 100%">
           <el-table-column prop="id" label="序号" width="88"> </el-table-column>
           <el-table-column prop="province" label="省份" width="86">
           </el-table-column>
@@ -27,11 +27,11 @@
 </template>
 
 <script>
-import { reqHostelList } from '../../api'
-import HostelCard from '../../components/HostelCard/index.vue'
+import { reqHostelList } from "../../api";
+import HostelCard from "../../components/HostelCard/index.vue";
 
 export default {
-  name: 'HostelList',
+  name: "HostelList",
   components: {
     HostelCard,
   },
@@ -39,25 +39,25 @@ export default {
   data() {
     return {
       tableData: [],
-    }
+    };
   },
   // 将要挂载时
   mounted() {
-    this.getHostelList()
+    this.getHostelList();
   },
 
   methods: {
     // 获取全部的旅舍
     getHostelList() {
       reqHostelList().then(value => {
-        const result = value.data
+        const result = value.data;
         if (result.status === 200) {
-          this.tableData = result.data
+          this.tableData = result.data;
         }
-      })
+      });
     },
   },
-}
+};
 </script>
 
 <style scoped lang="less">
