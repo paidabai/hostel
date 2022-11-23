@@ -17,7 +17,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('hostelDetailOptions', ['hostelDetailData'])
+    ...mapState('hostelDetailOptions', ['hostelDetailData']),
   },
   methods: {
     // 地图初始化方法
@@ -71,11 +71,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  #container{
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: 500px;
-    border-radius: 10px;
-  }
+#container{
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 500px;
+  border-radius: 10px;
+}
 </style>
