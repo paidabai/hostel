@@ -1,14 +1,17 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-
-import './assets/css/initialize.css'
+import store from "./store";
 import VueScrollTo from 'vue-scrollto'
 import { Loading }from 'element-ui';
 import Ripple from 'vue-ripple-directive'
 import 'element-ui/lib/theme-chalk/index.css'
+import './assets/css/initialize.css'
 
+// 关闭开发模式下的提示
+Vue.config.productionTip = false
 
+// 滚动插件配置项
 let options = {
   container: "body", //滚动的容器
   duration: 600, //滚动时间
@@ -23,12 +26,14 @@ let options = {
   y: true
 }
 
+// 使用插件
 Vue.use(Loading.directive);
 Vue.use(VueScrollTo, options);
 Vue.directive('ripple', Ripple);
 
 new Vue({
   router,
+  store,
   render: (h) => h(App),
   // vue 初始化完成后的钩子
   beforeCreate() {

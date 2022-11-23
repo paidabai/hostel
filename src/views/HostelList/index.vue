@@ -41,7 +41,8 @@
                 <router-link :to="{
                     name: 'hostelDetail',
                     params: {
-                      hostelId: scope.row.hostelId
+                      hostelId: scope.row.hostelId,
+                      hostelName: scope.row.hostelName
                     }
                   }
                 " >查看</router-link>
@@ -77,9 +78,6 @@ export default {
   },
 
   methods: {
-    handleClick(row) {
-      console.log(row);
-    },
     // 获取全部的旅舍
    getHostelList(){
      this.loading = true

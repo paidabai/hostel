@@ -1,20 +1,19 @@
 <template>
   <div class="container">
     <div class="center">
-      <DetailHeader />
-      <HostelInfo />
-     <div style="width: 100px; height: 500px"></div>
-
+      <DetailHeader :hostelName="hostelName"/>
+      <HostelInfo :hostelName="hostelName"/>
     </div>
   </div>
 </template>
 
 <script>
-import {reqHostelDetail, reqHostelType} from "../../api";
+import {reqHostelDetail, reqHostelServices, reqHostelType} from "../../api";
 // 引入旅舍详情的头部组件
 import DetailHeader from './DetailHeader/index.vue'
 // 引入旅舍详情的信息组件
 import HostelInfo from './HostelInfo/index.vue'
+import {BASE_URL} from "../../utils/constants";
 
 export default {
   name: "HostelDetail",
@@ -23,13 +22,11 @@ export default {
     DetailHeader,
     HostelInfo
   },
-  data() {
-    return {}
-  },
-  props: ['hostelId'],
+  props: ['hostelId', 'hostelName'],
   mounted() {
     this.getHostelDetail()
     this.getHostelType()
+    this.getHostelServices()
   },
   methods: {
     // 获取旅舍详情
@@ -37,7 +34,8 @@ export default {
       reqHostelDetail(this.hostelId).then(value => {
         const result = value.data
         if (result.status === 200) {
-          console.log(result.data)
+          // 添加数据在store 的state中
+          this.$store.dispatch('hostelDetailOptions/saveHostelDetail', result.data)
         }
       })
     },
@@ -46,11 +44,20 @@ export default {
       reqHostelType(this.hostelId).then(value => {
         const result = value.data
         if (result.status === 200) {
-          console.log(result.data)
+          this.$bus.$emit('getHostelType', result.data)
+        }
+      })
+    },
+    // 获取旅舍设施与服务
+    getHostelServices() {
+      reqHostelServices(this.hostelId).then(value => {
+        const result = value.data
+        if (result.status === 200) {
+          this.$bus.$emit('getHostelServices', result.data)
         }
       })
     }
-  }
+  },
 }
 </script>
 
