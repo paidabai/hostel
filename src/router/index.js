@@ -8,6 +8,9 @@ import hostelPublicGoodList from "../views/HostelPublicGood/index.vue"
 import hostelMenberCard from "../views/HostelMenberCard/index.vue"
 import HostelDetail from "../views/HostelDetail/index.vue";
 import OrderInfo from "../views/OrderInfo/index.vue";
+import hostelPublicGoodList from '../views/HostelPublicGood/index.vue'
+import hostelMenberCard from '../views/HostelMenberCard/index.vue'
+import latestNews from '../views/LatestNews/index.vue'
 
 Vue.use(VueRouter)
 
@@ -113,6 +116,17 @@ const router = new VueRouter({
       name:'memberCardquery',
       component:()=>import('../views/HostelMenberCard/memberCardquery.vue')
     },
+    {
+      path: '/latestNews',
+      name: 'latestNews',
+      component:latestNews,
+    },
+    {
+      path: '/newsDetails/:id',
+      name: 'newsDetails',
+      component:()=>import('../views/LatestNews/newsdetails.vue'),
+    },
+
   ]
 })
 

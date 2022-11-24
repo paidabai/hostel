@@ -16,6 +16,9 @@ export const reqHostelType = (hostelId) => ajax(`${BASE_URL}/hostelType`, {hoste
 
 // 获取宿舍公益卡片信息
 export const reqHostelPublicGoodList = () => ajax(`${BASE_URL}/hostelPublicGoodList`,{})
+// 最新资讯
+export const reqLatestNews = () => ajax(`${BASE_URL}/latestNews`,{})
+
 
 // 获取加盟分类
 export const reqCooperation = () => ajax(`${BASE_URL}/cooperation/catlist`, {})
@@ -36,6 +39,13 @@ export const reqMemberBenefits=()=>ajax(`${BASE_URL}/memberBenefits`,{})
 
 // 获取会员卡类型 /membercardType
 export const reqMembercardType=()=>ajax(`${BASE_URL}/membercardType`,{})
+
+
+// 最新资讯的分类
+export const reqLatestNewsType = () => ajax(`${BASE_URL}/latestnewsType`,{})
+
+// 根据Id查询每条信息
+export const reqNewsDetails=(id) => ajax(`${BASE_URL}/newsDetails/${id}`,{})
 
 
 // 获取旅舍的设施和服务
