@@ -135,7 +135,7 @@ const router = new VueRouter({
       path: '/details/:id/:cat_id',
       name: 'details',
       component: () => import('../views/AboutMe/details.vue'),
-    },views
+    },
 
   ]
 })
