@@ -15,7 +15,7 @@
       </router-link>
     </el-col>
     <el-col :span="8">
-      <router-link to="/">
+      <router-link to="/hostelMenberCard">
         <el-card
           shadow="hover"
           style="background-color: #f7941c; width: 240px; height: 80px"
@@ -29,7 +29,7 @@
       </router-link>
     </el-col>
     <el-col :span="8">
-      <router-link to="/">
+      <router-link to="/cooperation">
         <el-card
           shadow="hover"
           style="background-color: #4b8fcc; width: 240px; height: 80px"

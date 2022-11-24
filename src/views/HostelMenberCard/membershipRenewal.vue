@@ -1,8 +1,7 @@
 <template>
   <div class="main">
     <img
-      src="
-http://www.yhachina.com/images/membership/apply-processs.jpg"
+      src="http://www.yhachina.com/images/membership/apply-processs.jpg"
       alt=""
     />
     <div class="body">

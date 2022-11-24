@@ -73,6 +73,7 @@
           :choseDay = "choseDay"
       />
     </div>
+    <BookInfo />
   </div>
 </template>
 
@@ -80,12 +81,14 @@
 import getDistanceDays from '../../../../utils/calculationDate.js'
 import {BASE_URL} from "../../../../utils/constants.js";
 import ChoiceTotal from "./ChoiceTotal/index.vue";
+import BookInfo from "./BookInfo/index.vue";
 
 export default {
   name: "ChoiceHouse",
   props: ['hostelName'],
   components: {
     ChoiceTotal,
+    BookInfo
   },
   mounted() {
     this.$bus.$on('getHostelType', value => {

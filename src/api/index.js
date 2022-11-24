@@ -1,5 +1,5 @@
 import ajax from './axios'
-import {BASE_URL, GAODE_WEBKEY, LatitudeAndLongitude_URL} from "../utils/constants";
+import {BASE_URL, GAODE_WEBKEY, LatitudeAndLongitude_URL, PAY_URL} from "../utils/constants";
 // 默认GET，POST为ajax(`${BASE_URL}/hostelList`,{}，’POST‘)
 
 // 获取导航栏数据
@@ -45,7 +45,7 @@ export const reqMembercardType=()=>ajax(`${BASE_URL}/membercardType`,{})
 export const reqLatestNewsType = () => ajax(`${BASE_URL}/latestnewsType`,{})
 
 // 根据Id查询每条信息
-export const reqNewsDetails=(id) => ajax(`${BASE_URL}/newsDetails/${id}`,{})
+export const reqNewsDetails=(id) => ajax(`${BASE_URL}/newsDetails`,{id})
 
 
 // 获取旅舍的设施和服务
@@ -55,7 +55,19 @@ export const reqHostelServices = (hostelId) => ajax(`${BASE_URL}/hostelServices`
 export const reqLatitudeAndLongitude = (address) => ajax(`${LatitudeAndLongitude_URL}/api?address=${address}&key=${GAODE_WEBKEY}`)
 
 // 支付
-export const reqPay = (orderPay) => ajax('http://localhost:7777/api/pay', orderPay)
+export const reqPay = (orderPay) => ajax(`${PAY_URL}/api/pay`, orderPay)
 
 // 查询订单状态
-export const reqOrderStatus = (out_trade_no) => ajax('http://localhost:7777/api/queryOrder', {out_trade_no}, 'POST')
+export const reqOrderStatus = (out_trade_no) => ajax(`${PAY_URL}/api/queryOrder`, {out_trade_no}, 'POST')
+
+// 添加订单
+export const reqAddOrder = (order) => ajax(`${BASE_URL}/hostelOrder`, order, 'POST')
+
+// 修改订单状态
+export const reqUpdataOrder = (order) => ajax(`${BASE_URL}/hostelOrder/updataOrder`, {order}, 'POST')
+
+// 查询用户订单
+export const reqUserOrder = (user_phone) => ajax(`${BASE_URL}/hostelOrder/getOrder`, {user_phone})
+
+// 删除订单
+export const reqDeleteOrder = (order) => ajax(`${BASE_URL}/hostelOrder/deleteOrder`, {order})

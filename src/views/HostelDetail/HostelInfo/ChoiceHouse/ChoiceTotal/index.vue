@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import {reqPay} from "../../../../../api";
+import {reqAddOrder, reqPay} from "../../../../../api";
 import { customAlphabet } from 'nanoid'
 
 export default {
@@ -124,16 +124,33 @@ export default {
     // 获取订单支付页面
     getPay() {
       const nanoid = customAlphabet('1234567890', 16)
+      const orderId = nanoid()
       const orderPay = {
-        orderId: nanoid(), // 随机生成的订单号
+        orderId, // 随机生成的订单号
         hostelName: this.hostelName, // 旅舍名
         money: this.payment, // 需要支付的钱
-        url: 'http://localhost:5173/orderInfo' // 支付
+        url: 'http://localhost:5173/orderInfo' // 支付信息页面
       }
-      reqPay(orderPay).then(value => {
+      const user = JSON.parse(localStorage.getItem('user'))
+      const order = {
+        user_email: user.email,
+        user_phone: user.phone,
+        time: new Date().toLocaleDateString(),
+        pay: 0,
+        room: this.hostelName,
+        order: orderId,
+        paymoney: this.payment
+      }
+      reqAddOrder(order).then(value => {
         const result = value.data
         if (result.status === 200) {
-          location.href = result.url
+          // 打开支付页面
+          reqPay(orderPay).then(value => {
+            const result = value.data
+            if (result.status === 200) {
+              location.href = result.url
+            }
+          })
         }
       })
     }
@@ -162,9 +179,6 @@ export default {
       color: #fff;
       padding: 0 5px;
       font-weight: normal;
-    }
-    .has-gutter {
-      display: none;
     }
     .total {
       text-align: right;

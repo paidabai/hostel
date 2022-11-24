@@ -148,18 +148,18 @@ export default {
     > .left {
       width: 810px;
       overflow: hidden;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-
+      //display: flex;
+      //flex-wrap: wrap;
+      //justify-content: space-between;
+      column-count: 3;
       > .item {
-        width: calc((100% - 20px) / 3);
-        margin-bottom: 10px;
+        margin-bottom: 15px;
         cursor: pointer;
         padding: 14px;
         border: 1px solid #fff;
         border-radius: 5px;
         background-color: #fff;
+        overflow: hidden;
         &:hover {
           background-color: #ddd;
           transform: scale(1.05);

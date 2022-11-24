@@ -1,7 +1,7 @@
 <template>
   <el-carousel :interval="5000" arrow="always" v-show="hostelImgList.length">
     <el-carousel-item v-for="item in hostelImgList" :key="item">
-      <img :src="item" alt="">
+      <img :src="item" alt="" style="width: 100%">
     </el-carousel-item>
   </el-carousel>
 </template>

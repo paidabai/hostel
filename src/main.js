@@ -4,11 +4,12 @@ import App from './App.vue'
 import router from './router'
 import store from "./store";
 import VueScrollTo from 'vue-scrollto'
-import { Loading }from 'element-ui';
+import { Loading, Message }from 'element-ui';
 import Ripple from 'vue-ripple-directive'
 import 'element-ui/lib/theme-chalk/index.css'
 import './assets/css/initialize.css'
 import SIdentify from './components/Form/identify.vue'
+import './assets/css/initialize.css'
 
 // 关闭开发模式下的提示
 Vue.config.productionTip = false
@@ -32,10 +33,8 @@ let options = {
 Vue.use(Loading.directive);
 Vue.use(VueScrollTo, options);
 Vue.directive('ripple', Ripple);
-
-import './assets/css/initialize.css'
-
-import SIdentify from './components/Form/identify.vue'
+// 验证
+Vue.component('s-identify', SIdentify)
 
 new Vue({
   router,
@@ -43,9 +42,8 @@ new Vue({
   render: (h) => h(App),
   // vue 初始化完成后的钩子
   beforeCreate() {
-    // 验证
-    Vue.component('s-identify', SIdentify)
       // 设置全局事件总线
     Vue.prototype.$bus = this
+    Vue.prototype.$message = Message;
   },
 }).$mount('#app')

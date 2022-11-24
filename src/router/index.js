@@ -4,8 +4,6 @@ import VueRouter from 'vue-router'
 // 引入路由组件(不能忽略.vue后缀)
 import hostelList from '../views/HostelList/index.vue'
 import ContactHeadquarters from '../views/ContactHeadquarters/index.vue'
-import hostelPublicGoodList from "../views/HostelPublicGood/index.vue"
-import hostelMenberCard from "../views/HostelMenberCard/index.vue"
 import HostelDetail from "../views/HostelDetail/index.vue";
 import OrderInfo from "../views/OrderInfo/index.vue";
 import hostelPublicGoodList from '../views/HostelPublicGood/index.vue'
@@ -49,7 +47,7 @@ const router = new VueRouter({
     {
       path: '/member',
       name: 'member',
-      component: () => import('../pages/Member/index.vue'),
+      component: () => import('../views/HostelOrder/index.vue'),
     },
     //宿舍公益
     {
