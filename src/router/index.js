@@ -28,6 +28,7 @@ const router = new VueRouter({
       name: 'hostelList',
       component: hostelList,
     },
+    // 旅舍加盟
     {
       path: '/cooperation',
       name: 'cooperation',
@@ -124,6 +125,17 @@ const router = new VueRouter({
       name: 'newsDetails',
       component:()=>import('../views/LatestNews/newsdetails.vue'),
     },
+
+    // 关于我们
+    {
+      path: '/aboutme',
+      name: 'aboutme',
+      component: () => import('../views/AboutMe/index.vue'),
+    },{
+      path: '/details/:id/:cat_id',
+      name: 'details',
+      component: () => import('../views/AboutMe/details.vue'),
+    },views
 
   ]
 })
