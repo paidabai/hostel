@@ -31,12 +31,12 @@ const router = new VueRouter({
     {
       path: '/cooperation',
       name: 'cooperation',
-      component: () => import('../pages/Cooperation/index.vue'),
+      component: () => import('../views/Cooperation/index.vue'),
     },
     {
       path: '/detail/:id/:cat_id',
       name: 'detail',
-      component: () => import('../pages/Cooperation/detail.vue'),
+      component: () => import('../views/Cooperation/detail.vue'),
     },
     // 联系总部
     {
