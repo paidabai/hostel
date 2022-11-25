@@ -12,7 +12,7 @@
           <li class="firstcard">
             <div>
               <img
-                :src="`${BASE_URL}/cooperation/exhibition-l-iten4.jpg`"
+                :src="`${BASE_URL}/aboutme/exhibition-l-iten1.jpg`"
                 alt=""
               />
               <div style="background-color: rgba(144, 198, 44, 0.8)">
@@ -34,7 +34,7 @@
           <li>
             <div>
               <img
-                :src="`${BASE_URL}/cooperation/exhibition-l-iten5.jpg`"
+                :src="`${BASE_URL}/aboutme/exhibition-l-iten2.jpg`"
                 alt=""
               />
               <div style="background-color: rgba(246, 152, 38, 0.8)">
@@ -56,7 +56,7 @@
           <li>
             <div>
               <img
-                :src="`${BASE_URL}/cooperation/exhibition-l-iten6.jpg`"
+                :src="`${BASE_URL}/aboutme/exhibition-l-iten3.jpg`"
                 alt=""
               />
               <div style="background-color: rgba(81, 141, 189, 0.8)">

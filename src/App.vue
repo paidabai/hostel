@@ -37,3 +37,34 @@ export default {
   margin: 0;
 }
 </style>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-size: 16px;
+  color: #333;
+}
+a {
+  color: #333;
+  cursor: pointer;
+}
+input {
+  outline: none;
+  border: none;
+}
+ul,
+ol {
+  list-style: none;
+}
+.login_registry_form {
+  width: 100%;
+  margin-top: 50px;
+  padding: 30px 40px;
+  box-shadow: 0 5px 0 0 rgba(255, 255, 255, 0.4);
+  border-radius: 5px;
+  background: #f4fbff;
+}
+</style>

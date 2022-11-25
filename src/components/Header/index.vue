@@ -6,14 +6,21 @@
       </router-link>
     </div>
     <div class="header-right">
-      <div class="header-use">
-        <router-link to="/member">订单管理</router-link>
+      <div class="header-use" v-if="isLogin">
+        <router-link to="">订单管理</router-link>
         <router-link to=""
+          ><img src="../../assets/logo/user-icon.png" alt="" />
+          个人中心</router-link
+        >
+        <a @click="logOut">登出</a>
+      </div>
+      <div class="header-use" v-else>
+        <router-link to="">订单管理</router-link>
+        <router-link to="/user/regist"
           ><img src="../../assets/logo/user-icon.png" alt="" />
           注册</router-link
         >
-
-        <router-link to="">登录</router-link>
+        <router-link to="/user/login">登录</router-link>
       </div>
       <div class="header-nav">
         <router-link
@@ -36,6 +43,7 @@ export default {
     return {
       // 导航条文字
       navText: [],
+      isLogin: false,
     }
   },
   mounted() {
@@ -47,6 +55,7 @@ export default {
       reqHostelNav().then(value => {
         const result = value.data
         if (result.status === 200) {
+          console.log(result)
           this.navText = result.data
           this.$bus.$emit('getNavText', this.navText)
         }

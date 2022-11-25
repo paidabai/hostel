@@ -90,3 +90,11 @@ export const reqoneAboutme = cid =>
 // 单独一条 通过cat_id查询
 export const listmeclass = cat_id =>
   ajax(`${BASE_URL}/aboutme/aboutyih`, { cat_id })
+
+  //登录
+export const reqLogin = params =>
+ajax(`${BASE_URL}/user/login`, params, 'POST');
+// 注册
+export const reqRegist = params =>
+ajax(`${BASE_URL}/user/Regist`, params, 'POST');
+

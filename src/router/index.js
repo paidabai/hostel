@@ -194,6 +194,20 @@ const router = new VueRouter({
       name: 'details',
       component: () => import('../views/AboutMe/details.vue'),
     },
+    
+
+		// 登录
+		{
+			path: '/user/login',
+			name: '/user/login',
+			component: () => import('../views/User/Login.vue'),
+		},
+		// 注册
+		{
+			path: '/user/regist',
+			name: '/user/regist',
+			component: () => import('../views/User/Regist.vue'),
+		},
   ]
 })
 
