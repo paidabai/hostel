@@ -11,15 +11,12 @@
         <ul>
           <li class="firstcard">
             <div>
-              <img
-                :src="`${BASE_URL}/aboutme/exhibition-l-iten1.jpg`"
-                alt=""
-              />
+              <img :src="`${BASE_URL}/aboutme/exhibition-l-iten1.jpg`" alt="" />
               <div style="background-color: rgba(144, 198, 44, 0.8)">
                 <h5>YHA®青年旅舍®简介</h5>
                 <div>
                   <router-link
-                    v-for="item in firstList"
+                    v-for="item in firsmetList"
                     :key="item.lid"
                     :to="{
                       path: '/details/' + item.lid + '/' + item.cat_id,
@@ -33,15 +30,12 @@
           </li>
           <li>
             <div>
-              <img
-                :src="`${BASE_URL}/aboutme/exhibition-l-iten2.jpg`"
-                alt=""
-              />
+              <img :src="`${BASE_URL}/aboutme/exhibition-l-iten2.jpg`" alt="" />
               <div style="background-color: rgba(246, 152, 38, 0.8)">
                 <h5>YHA®在中国</h5>
                 <div>
                   <router-link
-                    v-for="item in twoList"
+                    v-for="item in twomeList"
                     :key="item.lid"
                     :to="{
                       path: '/details/' + item.lid + '/' + item.cat_id,
@@ -55,15 +49,12 @@
           </li>
           <li>
             <div>
-              <img
-                :src="`${BASE_URL}/aboutme/exhibition-l-iten3.jpg`"
-                alt=""
-              />
+              <img :src="`${BASE_URL}/aboutme/exhibition-l-iten3.jpg`" alt="" />
               <div style="background-color: rgba(81, 141, 189, 0.8)">
                 <h5>YHA®在海外</h5>
                 <div>
                   <router-link
-                    v-for="item in threeList"
+                    v-for="item in threemeList"
                     :key="item.lid"
                     :to="{
                       path: '/details/' + item.lid + '/' + item.cat_id,
@@ -83,48 +74,48 @@
 </template>
 
 <script>
-import { reqAboutme } from "../../api";
+import { reqAboutme } from '../../api'
 
-import { BASE_URL } from "../../utils/constants";
-import HostelCard from "../../components/HostelCard/index.vue";
+import { BASE_URL } from '../../utils/constants'
+import HostelCard from '../../components/HostelCard/index.vue'
 
 export default {
   data() {
     return {
-      tableList: [],
-      firstList: [],
-      twoList: [],
-      threeList: [],
+      tablemeList: [],
+      firsmetList: [],
+      twomeList: [],
+      threemeList: [],
       yyyy: [],
       BASE_URL,
-    };
+    }
   },
   components: {
-    HostelCard
+    HostelCard,
   },
   // 将要挂载时
   mounted() {
-    this.get();
+    this.getabout()
   },
   methods: {
-    get() {
-      reqAboutme().then((res) => {
-        console.log(res);
-        this.tableList = res.data.data;
-        this.firstList = this.tableList.filter((v) => {
-          return v.cat_id == 10;
-        });
-        this.twoList = this.tableList.filter((v) => {
-          return v.cat_id == 20;
-        });
-        this.threeList = this.tableList.filter((v) => {
-          return v.cat_id == 30;
-        });
-        console.log(this.firstList);
-      });
+    getabout() {
+      reqAboutme().then(res => {
+        console.log(res)
+        this.tablemeList = res.data.data
+        this.firsmetList = this.tablemeList.filter(v => {
+          return v.cat_id == 10
+        })
+        this.twomeList = this.tablemeList.filter(v => {
+          return v.cat_id == 20
+        })
+        this.threemeList = this.tablemeList.filter(v => {
+          return v.cat_id == 30
+        })
+        console.log(this.firsmetList)
+      })
     },
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
