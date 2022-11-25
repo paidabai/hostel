@@ -96,6 +96,7 @@ export default {
 }
 .exhibition-banner {
   width: 100%;
+  text-align:center;
 }
 .exhibition-wrap {
   width: 1080px;
