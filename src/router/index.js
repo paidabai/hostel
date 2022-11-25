@@ -28,15 +28,22 @@ const router = new VueRouter({
       name: 'hostelList',
       component: hostelList,
     },
+    // 旅舍加盟
     {
       path: '/cooperation',
       name: 'cooperation',
-      component: () => import('../pages/Cooperation/index.vue'),
+      component: () => import('../views/Cooperation/index.vue'),
     },
     {
       path: '/detail/:id/:cat_id',
       name: 'detail',
-      component: () => import('../pages/Cooperation/detail.vue'),
+      component: () => import('../views/Cooperation/detail.vue'),
+    },
+    // 联系总部
+    {
+      path: '/contactHeadquarters',
+      name: 'contactHeadquarters',
+      component: ContactHeadquarters
     },
     // 联系总部
     {
@@ -90,6 +97,23 @@ const router = new VueRouter({
       path:'/memberBenefits',
       name:'memberBenefits',
       component:()=>import('../views/HostelMenberCard/memberBenefits.vue')
+    },
+    // 旅舍详情
+    {
+      path: '/hostelDetail/:hostelId/:hostelName',
+      name: 'hostelDetail',
+      component: HostelDetail,
+      props({params:{hostelId, hostelName}}){
+        return {
+          hostelId,
+          hostelName
+        }
+      }
+    },
+    {
+      path: '/orderInfo',
+      name: 'OrderInfo',
+      component: OrderInfo
     },
     // 卡号查询
     {
@@ -159,6 +183,16 @@ const router = new VueRouter({
       path: '/newsDetails/:id',
       name: 'newsDetails',
       component:()=>import('../views/LatestNews/newsdetails.vue'),
+    },
+    // 关于我们
+    {
+      path: '/aboutme',
+      name: 'aboutme',
+      component: () => import('../views/AboutMe/index.vue'),
+    },{
+      path: '/details/:id/:cat_id',
+      name: 'details',
+      component: () => import('../views/AboutMe/details.vue'),
     },
   ]
 })
