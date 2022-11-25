@@ -52,6 +52,9 @@ export default {
   height: 100%;
   background-color: #f5f5f5;
   padding: 20px 0 80px;
+  a:hover{
+    cursor: pointer;
+  }
   .member-card {
     background-color: #fff;
     width: 1080px;

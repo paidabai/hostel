@@ -12,7 +12,7 @@
       <h2>一卡在手，走遍全球；更多优惠，更多机会！</h2>
       <div class="member-list">
         <dl>
-          <dt><img src="../../assets/img/member2.1.jpg" alt="" /></dt>
+          <dt><img src="../../assets/img/cardapply/member2.1.jpg" alt="" /></dt>
           <dd>
             <h3>国际畅游</h3>
             <p>
@@ -21,7 +21,7 @@
           </dd>
         </dl>
         <dl>
-          <dt><img src="../../assets/img/member2.2.jpg" alt="" /></dt>
+          <dt><img src="../../assets/img/cardapply/member2.2.jpg" alt="" /></dt>
           <dd>
             <h3>更多精彩</h3>
             <p>
@@ -30,7 +30,7 @@
           </dd>
         </dl>
         <dl>
-          <dt><img src="../../assets/img/member2.3.jpg" alt="" /></dt>
+          <dt><img src="../../assets/img/cardapply/member2.3.jpg" alt="" /></dt>
           <dd>
             <h3>全球通用</h3>
             <p>拥有YHA会员卡，您可以在全球青年旅舍享受住宿优惠。</p>
@@ -42,11 +42,13 @@
       <div class="container-top">
         <h2>申请YHA®会员卡，开启您的精彩旅程</h2>
         <div class="btns">
-          <a href="">绑定电子卡</a>
-          <a href="">会员问与答</a>
-          <a href="">申请方法</a>
-          <a href="">会员卡辨伪</a>
-          <a href="">代理商加盟</a>
+          <a @click="$router.push(`/binding`)">绑定电子卡</a>
+          <!-- <a @click="$router.push(`/threeFloor/binding`)">绑定电子卡</a> -->
+          <!-- <a ><router-link to="/threeFloor/binding">绑定电子卡</router-link> </a> -->
+          <a  @click="$router.push(`/questionAndAnswer`)">会员问与答</a>
+          <a  @click="$router.push(`/applyMethods`)">申请方法</a>
+          <a  @click="$router.push(`/memberIdentify`)">会员卡辨伪</a>
+          <a  @click="$router.push(`/agent`)">代理商加盟</a>
         </div>
         <a  @click="$router.push(`/memberCardType`)">马上申请</a>
       </div>
@@ -64,7 +66,7 @@
           <dd>
             <h3>{{item.title}}</h3>
             <p>{{item.function_desc}}</p>
-            <button>￥{{item.price}}</button>
+            <button @click="$router.push(`/memberAdd`)">￥{{item.price}}</button>
           </dd>
         </dl>
       </div>
@@ -123,7 +125,7 @@ a:hover,button:hover{
   height: 700px;
   min-width: 1080px;
   margin: auto;
-  background: url("../../assets/img/membership-banner.jpg") no-repeat center;
+  background: url("../../assets/img/cardapply/membership-banner.jpg") no-repeat center;
   // background-size: cover;
   display: flex;
   flex-direction: column;
@@ -200,7 +202,7 @@ a:hover,button:hover{
   height: 1050px;
   min-width: 1080px;
   margin: auto;
-  background: url("../../assets/img/member3.jpg") no-repeat center;
+  background: url("../../assets/img/cardapply/member3.jpg") no-repeat center;
   display: flex;
   flex-direction: column;
   align-items: center;

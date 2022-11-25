@@ -19,21 +19,6 @@
         </div>
       </div>
      </div>
-      <!-- <div class="body" >
-        <h2>{{ tableData[0].name }}</h2>
-        <img :src="tableData[0].img" alt="" />
-        <h3>{{ tableData[0].title }}</h3>
-        <span>￥{{ tableData[0].price }}</span>
-        <p>{{ tableData[0].card_desc }}</p>
-        <div>
-          <h3>成为YHA青年旅舍会员的好处：</h3>
-          <p v-html="tableData[0].member_goods"></p>
-          <div>
-            <h3>会员卡费用及有效期</h3>
-            <p v-html="tableData[0].card_limit"></p>
-          </div>
-        </div>
-      </div> -->
       <div class="side">
         <HostelCard></HostelCard>
       </div>
