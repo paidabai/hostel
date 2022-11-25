@@ -91,7 +91,6 @@ export default {
       margin-bottom: 60px;
       border-radius: 10px;
       box-shadow: 0 15px 35px -15px rgb(47 130 36 / 70%);
-      margin-bottom: 60px;
       position: absolute;
       top: -5%;
       > h2 {

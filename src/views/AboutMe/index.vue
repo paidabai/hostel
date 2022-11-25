@@ -86,6 +86,8 @@
 import { reqAboutme } from "../../api";
 
 import { BASE_URL } from "../../utils/constants";
+import HostelCard from "../../components/HostelCard/index.vue";
+
 export default {
   data() {
     return {
@@ -93,10 +95,12 @@ export default {
       firstList: [],
       twoList: [],
       threeList: [],
-
       yyyy: [],
       BASE_URL,
     };
+  },
+  components: {
+    HostelCard
   },
   // 将要挂载时
   mounted() {

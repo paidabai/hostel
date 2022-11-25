@@ -94,7 +94,7 @@ export default {
 			) {
 				let params = this.form;
 				reqLogin(params).then(res => {
-					if (res.data.status == 200) {
+					if (res.data.status === 200) {
 						let user = res.data.data;
 						sessionStorage.setItem('user', JSON.stringify(user));
 						// 自动登录是否勾选
@@ -102,7 +102,7 @@ export default {
 						if (this.autoLogin) {
 							localStorage.setItem('user', JSON.stringify(user));
 						}
-						this.$router.push('/');
+						this.$router.push('/aboutme');
 					}
 				});
 			} else {

@@ -45,7 +45,6 @@ export default {
   text-decoration: none;
   box-sizing: border-box;
   font-size: 16px;
-  color: #333;
 }
 a {
   color: #333;

@@ -123,36 +123,43 @@ export default {
     },
     // 获取订单支付页面
     getPay() {
-      const nanoid = customAlphabet('1234567890', 16)
-      const orderId = nanoid()
-      const orderPay = {
-        orderId, // 随机生成的订单号
-        hostelName: this.hostelName, // 旅舍名
-        money: this.payment, // 需要支付的钱
-        url: 'http://localhost:5173/orderInfo' // 支付信息页面
-      }
-      const user = JSON.parse(localStorage.getItem('user'))
-      const order = {
-        user_email: user.email,
-        user_phone: user.phone,
-        time: new Date().toLocaleDateString(),
-        pay: 0,
-        room: this.hostelName,
-        order: orderId,
-        paymoney: this.payment
-      }
-      reqAddOrder(order).then(value => {
-        const result = value.data
-        if (result.status === 200) {
-          // 打开支付页面
-          reqPay(orderPay).then(value => {
-            const result = value.data
-            if (result.status === 200) {
-              location.href = result.url
-            }
-          })
+      const user = JSON.parse(localStorage.getItem('user')) || JSON.parse(sessionStorage.getItem('user'))
+      if (user) {
+        const nanoid = customAlphabet('1234567890', 16)
+        const orderId = nanoid()
+        const orderPay = {
+          orderId, // 随机生成的订单号
+          hostelName: this.hostelName, // 旅舍名
+          money: this.payment, // 需要支付的钱
+          url: 'http://localhost:5173/orderInfo' // 支付信息页面
         }
-      })
+        const order = {
+          user_email: user[0].email,
+          user_phone: user[0].phone,
+          time: new Date().toLocaleDateString(),
+          pay: 0,
+          room: this.hostelName,
+          order: orderId,
+          paymoney: this.payment
+        }
+        reqAddOrder(order).then(value => {
+          const result = value.data
+          if (result.status === 200) {
+            // 打开支付页面
+            reqPay(orderPay).then(value => {
+              const result = value.data
+              if (result.status === 200) {
+                location.href = result.url
+              }
+            })
+          }
+        })
+      } else {
+        this.$message({
+          message: '请登录',
+          type: 'warning'
+        });
+      }
     }
   }
 }
