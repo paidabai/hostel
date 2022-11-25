@@ -131,7 +131,7 @@ export default {
           orderId, // 随机生成的订单号
           hostelName: this.hostelName, // 旅舍名
           money: this.payment, // 需要支付的钱
-          url: 'http://localhost:5173/orderInfo' // 支付信息页面
+          url: 'http://paidab.love:6600/orderInfo' // 支付信息页面
         }
         const order = {
           user_email: user[0].email,

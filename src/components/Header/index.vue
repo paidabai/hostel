@@ -93,7 +93,7 @@ export default {
   .header-right {
     display: flex;
     flex-wrap: wrap;
-    justify-content: end;
+    justify-content: flex-end;
     .header-use {
       height: 50%;
       width: 255px;
