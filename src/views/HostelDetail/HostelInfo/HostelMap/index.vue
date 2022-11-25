@@ -7,13 +7,15 @@ import AMapLoader from "@amap/amap-jsapi-loader";
 import {GAODE_KEY} from "../../../../utils/constants";
 import {reqLatitudeAndLongitude} from "../../../../api";
 import {mapState} from "vuex";
+import {BASE_URL} from '../../../../utils/constants'
+
 
 export default {
   name: "HostelMap",
   props: ['hostelName'],
   data() {
     return {
-      location: []
+      location: [],
     }
   },
   computed: {
@@ -36,7 +38,7 @@ export default {
           let marker = new AMap.Marker({
             icon: new AMap.Icon({
               size: new AMap.Size(37, 77),    // 图标尺寸
-              image: '../../../../src/assets/logo/position-icon.png',  // Icon的图像
+              image: `${BASE_URL}/hostelImg/position-icon.png`,  // Icon的图像
               imageOffset: new AMap.Pixel(0, 0),  // 图像相对展示区域的偏移量，适于雪碧图等
             }),
             position: new AMap.LngLat(this.location[0],this.location[1]),

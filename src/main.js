@@ -4,9 +4,13 @@ import App from './App.vue'
 import router from './router'
 import store from "./store";
 import VueScrollTo from 'vue-scrollto'
-import { Loading, Message }from 'element-ui';
+import { Loading, Message, Select, Option }from 'element-ui';
 import Ripple from 'vue-ripple-directive'
 import 'element-ui/lib/theme-chalk/index.css'
+import "element-ui/lib/select";
+import "element-ui/lib/option";
+import "element-ui/lib/button";
+import "element-ui/lib/form"
 import './assets/css/initialize.css'
 import SIdentify from './components/Form/identify.vue'
 import './assets/css/initialize.css'
@@ -33,6 +37,10 @@ let options = {
 Vue.use(Loading.directive);
 Vue.use(VueScrollTo, options);
 Vue.directive('ripple', Ripple);
+// Vue.component(Select.name, Select);
+// Vue.component(Option.name, Option);
+Vue.use(Select)
+Vue.use(Option)
 // 验证
 Vue.component('s-identify', SIdentify)
 

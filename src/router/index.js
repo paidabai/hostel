@@ -194,8 +194,6 @@ const router = new VueRouter({
       name: 'details',
       component: () => import('../views/AboutMe/details.vue'),
     },
-    
-
 		// 登录
 		{
 			path: '/user/login',
@@ -208,6 +206,13 @@ const router = new VueRouter({
 			name: '/user/regist',
 			component: () => import('../views/User/Regist.vue'),
 		},
+      // 重定向
+    {
+      path: '/*', redirect: to => {
+        // 方法接收 目标路由 作为参数
+        return '/aboutme'
+      }
+    }
   ]
 })
 

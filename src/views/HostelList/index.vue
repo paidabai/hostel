@@ -37,7 +37,6 @@
               label="操作"
               width="75">
             <template slot-scope="scope">
-              <el-button type="text" size="small">
                 <router-link :to="{
                     name: 'hostelDetail',
                     params: {
@@ -46,7 +45,6 @@
                     }
                   }
                 " >查看</router-link>
-              </el-button>
             </template>
           </el-table-column>
         </el-table>

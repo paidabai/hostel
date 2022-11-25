@@ -1,7 +1,7 @@
 <template>
   <div class="publicgood">
     <div class="bgImg">
-      <img src="../../assets/img/exhibition-banner5.jpg" alt="" />
+      <img src="../../assets/img/latestnews-banner4.jpg" alt="" />
     </div>
     <!-- 卡片 -->
     <div class="body">

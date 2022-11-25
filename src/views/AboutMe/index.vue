@@ -96,6 +96,9 @@ export default {
   // 将要挂载时
   mounted() {
     this.getabout()
+    if (JSON.parse(sessionStorage.getItem('user')) || JSON.parse(localStorage.getItem('user'))) {
+      this.$bus.$emit('setIsLogin')
+    }
   },
   methods: {
     getabout() {

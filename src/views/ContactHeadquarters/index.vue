@@ -70,6 +70,7 @@
 import AMapLoader from '@amap/amap-jsapi-loader'
 import {GAODE_KEY} from "../../utils/constants";
 import HostelCard from "../../components/HostelCard/index.vue";
+import {BASE_URL} from '../../utils/constants'
 
 export default {
   name: "ContactHeadquarters",
@@ -101,7 +102,7 @@ export default {
         },
       ],
       // el-menu的样式
-      menuType: 'el-menu-demo'
+      menuType: 'el-menu-demo',
     }
   },
   // 将要挂载时
@@ -133,7 +134,7 @@ export default {
         let marker = new AMap.Marker({
           icon: new AMap.Icon({
             size: new AMap.Size(37, 57),    // 图标尺寸
-            image: '../../../src/assets/logo/lxzb-ditu.png',  // Icon的图像
+            image: `${BASE_URL}/hostelImg/lxzb-ditu.png`,  // Icon的图像
             imageOffset: new AMap.Pixel(0, 0),  // 图像相对展示区域的偏移量，适于雪碧图等
           }),
           position: new AMap.LngLat(104.088860,30.647898),
