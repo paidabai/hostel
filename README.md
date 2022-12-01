@@ -27,11 +27,11 @@ src
     css
       initialize.css初始化的css
     img 存放图片
-    Sprite 雪碧图/精灵图
+    sprite 雪碧图/精灵图
   components  一般组件(非路由组件)
     Footer  底部组件
     Header  头部组件
-  pages  存放路由组件(文件夹名为组件名)
+  views  存放路由组件(文件夹名为组件名)
   router  路由的配置文件
   utils  工具文件夹
     constants.js  存放常量

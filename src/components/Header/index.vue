@@ -2,17 +2,25 @@
   <div class="header">
     <div class="header-logo">
       <router-link to="">
-        <img src="../../assets/navLogo/logo.png" alt="" />
+        <img src="../../assets/logo/logo.png" alt="" />
       </router-link>
     </div>
     <div class="header-right">
-      <div class="header-use">
+      <div class="header-use" v-if="isLogin">
         <router-link to="/member">订单管理</router-link>
         <router-link to=""
-          ><img src="../../assets/navLogo/user-icon.png" alt="" />
+          ><img src="../../assets/logo/user-icon.png" alt="" />
+          个人中心</router-link
+        >
+        <a @click="logOut">退出</a>
+      </div>
+      <div class="header-use" v-else>
+        <router-link to="/member">订单管理</router-link>
+        <router-link to="/user/regist"
+          ><img src="../../assets/logo/user-icon.png" alt="" />
           注册</router-link
         >
-        <router-link to="">登录</router-link>
+        <router-link to="/user/login">登录</router-link>
       </div>
       <div class="header-nav">
         <router-link
@@ -35,17 +43,32 @@ export default {
     return {
       // 导航条文字
       navText: [],
+      isLogin: false,
+      user: JSON.parse(sessionStorage.getItem('user')) || JSON.parse(localStorage.getItem('user'))
     }
   },
   mounted() {
     this.getHostelNav()
+    // this.user = ;
+    if (this.user) {
+      this.isLogin = true;
+    } else {
+      this.isLogin = false;
+    }
   },
   methods: {
+    // 退出登录
+    logOut() {
+      sessionStorage.removeItem('user');
+      localStorage.removeItem('user');
+      this.isLogin = false;
+    },
     // 获取顶部导航数据
     getHostelNav() {
       reqHostelNav().then(value => {
         const result = value.data
         if (result.status === 200) {
+          console.log(result)
           this.navText = result.data
           this.$bus.$emit('getNavText', this.navText)
         }

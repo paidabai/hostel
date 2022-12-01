@@ -22,7 +22,7 @@
         </p>
 
         <p class="copyright">
-          版权所有 © 青年旅舍	<font style="vertical-align:super;font-size:50%; ">®</font>总部
+          版权所有 © 青年旅舍	<sup>®</sup>总部
           <a href="https://beian.miit.gov.cn/" target="_blank">
             蜀ICP备2022025734号-1 &nbsp;
           </a>
@@ -91,7 +91,7 @@ export default {
           width: 35px;
           height: 35px;
           border-radius: 50%;
-          background-image: url("../../assets/Sprite/app_z.png");
+          background-image: url("../../assets/sprite/app_z.png");
           background-repeat: no-repeat;
           display: inline-block;
           transition: 0.3s ease;

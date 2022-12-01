@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 // 参数为url请求的地址，参数为{}obj对象，默认为GET请求
 export default function ajax(url, data = {}, type = 'GET') {
   if (type === 'GET') {
