@@ -80,6 +80,7 @@ const router = new VueRouter({
       name: 'memberAdd',
       component: ()=>import('../views/HostelMenberCard/memberAdd.vue'), 
     },
+    
     // 会员卡类型 ---- 了解更多
     {
       path: '/memberCardTypeMore',

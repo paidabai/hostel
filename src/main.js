@@ -12,6 +12,9 @@ import "element-ui/lib/option";
 import "element-ui/lib/button";
 import "element-ui/lib/form";
 import "element-ui/lib/input";
+import "element-ui/lib/date-picker";
+import "element-ui/lib/radio";
+import "element-ui/lib/row";
 import './assets/css/initialize.css'
 import SIdentify from './components/Form/identify.vue'
 import './assets/css/initialize.css'
