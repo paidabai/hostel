@@ -89,9 +89,7 @@
                 <router-link to="/personalcenter/coupon">优惠劵</router-link>
               </dd>
               <dd>
-                <router-link to="/personalcenter/point">
-                  我的积分</router-link
-                >
+                <router-link to="/personalcenter/point"> 我的积分</router-link>
               </dd>
 
               <dt>常用信息管理</dt>
@@ -107,14 +105,12 @@
               </dd>
 
               <dt>
-                <router-link to="/personalcenter/help"
-                  >帮助中心</router-link
-                >
+                <router-link to="/personalcenter/help">帮助中心</router-link>
               </dt>
             </dl>
           </div>
         </div>
-        <div class="personal-right">
+        <div class="personal-right , rim">
           <router-view></router-view>
         </div>
       </div>
@@ -185,8 +181,10 @@ export default {};
         dd {
           line-height: 180%;
           cursor: pointer;
-          &:hover {
-            color: #f7941c;
+          a {
+            &:hover {
+              color: #f7941c;
+            }
           }
         }
         .active {
@@ -198,5 +196,13 @@ export default {};
       width: 950px;
     }
   }
+}
+.rim {
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 0 1px #efefef;
+  padding: 20px 20px;
+  margin-bottom: 20px;
 }
 </style>
