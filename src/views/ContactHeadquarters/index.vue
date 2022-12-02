@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import AMapLoader from '@amap/amap-jsapi-loader'
+import AMapLoader from '@amap/amap-jsapi-loader';
 import {GAODE_KEY} from "../../utils/constants";
 import HostelCard from "../../components/HostelCard/index.vue";
 import {BASE_URL} from '../../utils/constants'

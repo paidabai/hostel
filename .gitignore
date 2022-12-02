@@ -6,6 +6,8 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+/public/cb82efb9f6a7666b7d98ad8b082e28a.jpg
+
 
 node_modules
 .DS_Store
