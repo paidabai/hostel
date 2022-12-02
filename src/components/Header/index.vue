@@ -1,14 +1,14 @@
 <template>
   <div class="header">
     <div class="header-logo">
-      <router-link to="">
+      <router-link to="/">
         <img src="../../assets/logo/logo.png" alt="" />
       </router-link>
     </div>
     <div class="header-right">
       <div class="header-use" v-show="isLogin">
         <router-link to="/member">订单管理</router-link>
-        <router-link to=""
+        <router-link to="/personalcenter"
           ><img src="../../assets/logo/user-icon.png" alt="" />
           个人中心</router-link
         >
@@ -36,46 +36,46 @@
 </template>
 
 <script>
-import { reqHostelNav } from '../../api'
+import { reqHostelNav } from "../../api";
 
 export default {
-  name: 'Header',
+  name: "Header",
   data() {
     return {
       // 导航条文字
       navText: [],
       isLogin: false,
-      user: []
-    }
+      user: [],
+    };
   },
   mounted() {
-    this.getHostelNav()
-    this.$bus.$on('setIsLogin',this.setIsLogin)
+    this.getHostelNav();
+    this.$bus.$on("setIsLogin", this.setIsLogin);
   },
   methods: {
     // 修改登录状态
     setIsLogin() {
-      this.isLogin = true
+      this.isLogin = true;
     },
     // 退出登录
     logOut() {
-      sessionStorage.removeItem('user');
-      localStorage.removeItem('user');
+      sessionStorage.removeItem("user");
+      localStorage.removeItem("user");
       this.isLogin = false;
     },
     // 获取顶部导航数据
     getHostelNav() {
-      reqHostelNav().then(value => {
-        const result = value.data
+      reqHostelNav().then((value) => {
+        const result = value.data;
         if (result.status === 200) {
-          console.log(result)
-          this.navText = result.data
-          this.$bus.$emit('getNavText', this.navText)
+          console.log(result);
+          this.navText = result.data;
+          this.$bus.$emit("getNavText", this.navText);
         }
-      })
+      });
     },
   },
-}
+};
 </script>
 
 <style lang="less" scoped>
