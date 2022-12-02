@@ -7,7 +7,7 @@
       <div class="left">
         <div class="detail" v-for="item in details" :key="item.id">
           <h2>{{ item.title }}</h2>
-          <span>{{ item.time }}</span>
+          <span>发布时间: {{ item.time }}</span>
           <p>{{ item.detail_f }}</p>
           <video
             v-show="item.vd"

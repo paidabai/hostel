@@ -4,7 +4,7 @@ import App from './App.vue'
 import router from './router'
 import store from "./store";
 import VueScrollTo from 'vue-scrollto'
-import { Loading, Message, Select, Option, Input }from 'element-ui';
+import { Loading, Message, Select, Option, Input, Form, FormItem, Row }from 'element-ui';
 import Ripple from 'vue-ripple-directive'
 import 'element-ui/lib/theme-chalk/index.css'
 import "element-ui/lib/select";
@@ -12,6 +12,9 @@ import "element-ui/lib/option";
 import "element-ui/lib/button";
 import "element-ui/lib/form";
 import "element-ui/lib/input";
+import "element-ui/lib/form";
+import "element-ui/lib/form-item";
+import "element-ui/lib/row";
 import './assets/css/initialize.css'
 import SIdentify from './components/Form/identify.vue'
 import './assets/css/initialize.css'
@@ -41,6 +44,9 @@ Vue.directive('ripple', Ripple);
 Vue.use(Select)
 Vue.use(Option)
 Vue.use(Input)
+Vue.use(Form)
+Vue.use(FormItem)
+Vue.use(Row)
 // 验证
 Vue.component('s-identify', SIdentify)
 

@@ -68,7 +68,7 @@
           </li>
         </ul>
       </div>
-      <HostelCard />
+      <HostelCard style="margin-top: 18px;"/>
     </div>
   </div>
 </template>

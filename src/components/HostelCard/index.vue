@@ -1,7 +1,7 @@
 <template>
   <el-row :gutter="12" style="display: flex; flex-direction: column">
     <el-col :span="8">
-      <router-link to="/">
+      <router-link to="/hostelList">
         <el-card
           shadow="hover"
           style="background-color: #87c524; width: 240px; height: 80px"

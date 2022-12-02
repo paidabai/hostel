@@ -91,6 +91,11 @@ export default {
 </script>
 
 <style scoped lang="less">
+  .bgImg {
+    img {
+      width: 100%;
+    }
+  }
   .main {
     width: 1080px;
     margin: 0 auto;
