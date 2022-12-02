@@ -10,6 +10,7 @@ import OrderInfo from "../views/OrderInfo/index.vue";
 import hostelPublicGoodList from "../views/HostelPublicGood/index.vue";
 import hostelMenberCard from "../views/HostelMenberCard/index.vue";
 import latestNews from "../views/LatestNews/index.vue";
+import index from "../views/Home/index.vue";
 
 Vue.use(VueRouter);
 
@@ -18,11 +19,11 @@ const router = new VueRouter({
   mode: "history",
   base: import.meta.env.BASE_URL,
   routes: [
-    // {
-    //   path: '/',
-    //   name: 'home',
-    //   component: HomeView
-    // },
+    {
+      path: "/",
+      name: "index",
+      component: index,
+    },
     // 旅舍列表
     {
       path: "/hostelList",
@@ -81,7 +82,7 @@ const router = new VueRouter({
       name: "memberAdd",
       component: () => import("../views/HostelMenberCard/memberAdd.vue"),
     },
-    
+
     // 会员卡类型 ---- 了解更多
     {
       path: "/memberCardTypeMore",
@@ -342,8 +343,5 @@ const router = new VueRouter({
     },
   ],
 });
-
-
-
 
 export default router;
