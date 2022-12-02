@@ -45,13 +45,19 @@ export const getcoplist = lid => ajax(`${BASE_URL}/cooperation/list`, { lid })
 export const listclass = cat_id =>
   ajax(`${BASE_URL}/cooperation/classify`, { cat_id })
 
-// 会员卡  会员优惠
+// 会员卡  会员优惠 首页列表
 export const reqMemberBenefits = () =>
   ajax(`${BASE_URL}/memberCard/memberBenefits`, {})
 
-// 获取会员卡类型 /membercardType
+// 获取次页会员卡类型 /membercardType
 export const reqMembercardType = () =>
   ajax(`${BASE_URL}/memberCard/membercardType`, {})
+
+// 添加会员信息表单  /memberCard/memberAdd
+export const addMember=(params)=>ajax(`${BASE_URL}/memberCard/memberAdd`,params,'POST')
+
+//添加会员   ----  获取证件类型接口
+export const reqIdType=()=>ajax(`${BASE_URL}/memberCard/IdType`,{})
 
 // 最新资讯的分类
 export const reqLatestNewsType = () => ajax(`${BASE_URL}/latestnewsType`, {})

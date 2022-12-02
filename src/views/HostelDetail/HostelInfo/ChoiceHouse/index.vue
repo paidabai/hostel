@@ -36,7 +36,7 @@
             label="最多人数"
             width="70">
           <template slot-scope="scope">
-            <img :src="scope.row.peoles === '1' ? '../../../../src/assets/img/1D.gif' : '../../../../src/assets/img/2D.gif'" alt="">
+            <img :src="scope.row.peoles === '1' ? require('../../../../assets/img/1D.gif') : require('../../../../assets/img/1D.gif')" alt="">
           </template>>
         </el-table-column>
         <el-table-column

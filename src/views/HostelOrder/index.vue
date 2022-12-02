@@ -130,7 +130,7 @@ export default {
         orderId: value.order, // 订单号
         hostelName: value.room, // 旅舍名
         money: value.paymoney, // 需要支付的钱
-        url: 'http://localhost:5173/orderInfo' // 支付信息页面
+        url: 'http://paidab.love:6600/orderInfo' // 支付信息页面
       }
       // 打开支付页面
       reqPay(orderPay).then(value => {

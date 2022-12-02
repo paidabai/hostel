@@ -6,7 +6,7 @@
       </router-link>
     </div>
     <div class="header-right">
-      <div class="header-use" v-if="isLogin">
+      <div class="header-use" v-show="isLogin">
         <router-link to="/member">订单管理</router-link>
         <router-link to=""
           ><img src="../../assets/logo/user-icon.png" alt="" />
@@ -14,7 +14,7 @@
         >
         <a @click="logOut">退出</a>
       </div>
-      <div class="header-use" v-else>
+      <div class="header-use" v-show="!isLogin">
         <router-link to="/member">订单管理</router-link>
         <router-link to="/user/regist"
           ><img src="../../assets/logo/user-icon.png" alt="" />
@@ -22,6 +22,7 @@
         >
         <router-link to="/user/login">登录</router-link>
       </div>
+
       <div class="header-nav">
         <router-link
           :to="textItem.move"
@@ -44,19 +45,18 @@ export default {
       // 导航条文字
       navText: [],
       isLogin: false,
-      user: JSON.parse(sessionStorage.getItem('user')) || JSON.parse(localStorage.getItem('user'))
+      user: []
     }
   },
   mounted() {
     this.getHostelNav()
-    // this.user = ;
-    if (this.user) {
-      this.isLogin = true;
-    } else {
-      this.isLogin = false;
-    }
+    this.$bus.$on('setIsLogin',this.setIsLogin)
   },
   methods: {
+    // 修改登录状态
+    setIsLogin() {
+      this.isLogin = true
+    },
     // 退出登录
     logOut() {
       sessionStorage.removeItem('user');
@@ -93,7 +93,7 @@ export default {
   .header-right {
     display: flex;
     flex-wrap: wrap;
-    justify-content: end;
+    justify-content: flex-end;
     .header-use {
       height: 50%;
       width: 255px;

@@ -10,7 +10,7 @@
             <h4>￥{{item.price}}</h4>
             <p>{{item.function_desc}}</p>
             <a @click="$router.push(`/memberCardTypeMore?id=${item.id}`)">了解更多</a>
-            <button>马上申请</button>
+            <router-link to="memberAdd"><button>马上申请</button></router-link>
           </dd>
         </dl>
       </div>
@@ -113,7 +113,7 @@ export default {
             text-decoration: underline;
             font-size: 14px;
           }
-          > button {
+          button {
             padding: 8px 50px;
             border-radius: 20px;
             color: #fff;
