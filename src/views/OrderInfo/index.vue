@@ -29,6 +29,9 @@ export default {
         })
       }
     })
+    if (JSON.parse(sessionStorage.getItem('user')) || JSON.parse(localStorage.getItem('user'))) {
+      this.$bus.$emit('setIsLogin')
+    }
   },
   watch: {
     show() {

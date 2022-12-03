@@ -1,7 +1,6 @@
-<template>
+ <template>
   <div class="order—main">
-  
-    <div>
+    <div style="width: 100%;">
       <p class="order-title">您的旅舍订单：</p>
       <el-table
           :data="tableData"
@@ -42,7 +41,7 @@
             <span>{{ scope.row.pay === '0' ? '未支付' : '已支付' }}</span>
           </template>
         </el-table-column>
-        <el-table-column label="操作">
+        <el-table-column label="操作" width="180">
           <template slot-scope="scope">
             <el-button
                 size="mini"
@@ -142,7 +141,7 @@ export default {
 
 <style lang="less" scoped>
   .order—main {
-    width: 1080px;
+    //width: 1080px;
     min-height: 50vh;
     margin: 20px auto;
     .order-title {

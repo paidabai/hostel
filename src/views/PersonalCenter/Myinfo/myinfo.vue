@@ -73,7 +73,7 @@
           <h2>我的足迹</h2>
         </div>
         <!-- 地图 -->
-        <div id="footprintcanvs"></div>
+        <div id="footprintcanvs" style="width: 580px"></div>
       </div>
       <div class="footprint-r">
         <div class="footprint-title">
@@ -84,10 +84,12 @@
           <img
             src="../../../assets/img/personalcenter/official-app.jpg"
             alt=""
+            style="width: 220px"
           />
           <img
             src="../../../assets/img/personalcenter/official-wx.jpg"
             alt=""
+            style="width: 220px"
           />
         </div>
       </div>
@@ -131,7 +133,8 @@ export default {
 
 <style lang="less" scoped>
 .main {
-  width: 950px;
+  width: 915px;
+  //width: 100%;
   display: flex;
   flex-direction: column;
   .personal-information {
@@ -302,7 +305,7 @@ export default {
       flex-direction: column;
       padding-left: 20px;
       .footprint-title {
-        width: 260px;
+        width: 220px;
         h2 {
           font-weight: bold;
           height: 40px;

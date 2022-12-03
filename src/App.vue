@@ -50,10 +50,10 @@ a {
   color: #333;
   cursor: pointer;
 }
-input {
-  outline: none;
-  border: none;
-}
+/*input {*/
+/*  outline: none;*/
+/*  border: none;*/
+/*}*/
 ul,
 ol {
   list-style: none;

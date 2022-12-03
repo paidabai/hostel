@@ -4,20 +4,21 @@ import App from './App.vue'
 import router from './router'
 import store from "./store";
 import VueScrollTo from 'vue-scrollto'
-import { Loading, Message, Select, Option, Input, Form, FormItem, Row }from 'element-ui';
+import { Loading, Message, Select, Option, Input, Form, FormItem, Row, InputNumber }from 'element-ui';
 import Ripple from 'vue-ripple-directive'
 import 'element-ui/lib/theme-chalk/index.css'
+import "element-ui/lib/theme-chalk/input.css"
 import "element-ui/lib/select";
 import "element-ui/lib/option";
 import "element-ui/lib/button";
 import "element-ui/lib/form";
 import "element-ui/lib/input";
 import "element-ui/lib/form";
-import "element-ui/lib/form-item";
+import "element-ui/lib/form-item"
 import "element-ui/lib/row";
+import "element-ui/lib/input-number"
 import './assets/css/initialize.css'
 import SIdentify from './components/Form/identify.vue'
-import './assets/css/initialize.css'
 
 // 关闭开发模式下的提示
 Vue.config.productionTip = false
@@ -46,6 +47,7 @@ Vue.use(Option)
 Vue.use(Input)
 Vue.use(Form)
 Vue.use(FormItem)
+Vue.use(InputNumber)
 Vue.use(Row)
 // 验证
 Vue.component('s-identify', SIdentify)

@@ -339,6 +339,10 @@ const router = new VueRouter({
           component: () =>
             import("../views/PersonalCenter/helpCenter/help.vue"),
         },
+        {
+          path:'/personalcenter',
+          redirect:'/personalcenter/myinfo'
+        },
       ],
     },
   ],
